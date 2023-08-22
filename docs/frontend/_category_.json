@@ -1,0 +1,8 @@
+{
+  "label": "Frontend",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Based on React Native and React Native Paper"
+  }
+}

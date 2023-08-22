@@ -52,3 +52,4 @@ Not using SSH:
 $ GIT_USER=<Your GitHub username> npm run deploy
 ```
 Now you should see changes in [topmello.github.io](https://topmello.github.io/)
+***Remember to PUSH the changes to Github too after writing***
