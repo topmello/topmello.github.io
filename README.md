@@ -7,6 +7,8 @@ G'day, mates from Top Mello team. Here's our development documentation resposito
 ### How to write docs
 Use the following link to learn about writting docs, tags them and organize directories:   
 [How to Create Doc - Docusaurus](https://docusaurus.io/docs/create-doc)  
+  
+***Remember to PUSH the changes to Github too after writing***
 
 ### How to organize docs
 to be continued...
