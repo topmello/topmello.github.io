@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 # Login
 Implemented using OAuth2 with Password (and hashing), Bearer with JWT tokens
