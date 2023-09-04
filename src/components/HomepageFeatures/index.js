@@ -53,7 +53,16 @@ export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
-        <img src="/img/qr.png" />
+        <p>Iteration 1 Build</p>
+        <img src="/img/qr_it_1.png" />
+      </div>
+      <div className="container">
+        <p>Iteration 2 Build</p>
+        <img src="/img/settle-aid-icon.png" />
+      </div>
+      <div className="container">
+        <p>Iteration 3 Build</p>
+        <img src="/img/settle-aid-icon.png" />
       </div>
     </section>
   );
