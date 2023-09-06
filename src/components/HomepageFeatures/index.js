@@ -54,7 +54,7 @@ export default function HomepageFeatures() {
     <section className={styles.features}>
       <div className="container">
         <p>Iteration 1 Build</p>
-        <img src="/img/qr_it_1.png" />
+        <img src="/img/qr_it_1.svg" />
       </div>
       <div className="container">
         <p>Iteration 2 Build</p>
