@@ -2,46 +2,15 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Melbourne Unveiled: Your Guide to Embracing the City and Fitting In with Confidence.
 
-## Getting Started
+## Problem Statement
 
-Get started by **creating a new site**.
+“Flying Grannies” in Australia are subjected to social isolation due to difficulty adapting to new surroundings. They make temporary visits to Melbourne for the purpose of looking after their grandchildren. With 30% of Australia's population originating from overseas, a minimum of 4,500 grandparents are undertaking regular brief trips to aid their families. These grandparents face challenges adapting to new environments due to language barrier and cultural shock, resulting in a tendency to remain at home. Frequently, they experience loneliness and are socially isolated, especially when their grandchildren are in school or during the early stages of their stay in Australia.
+ 
+The impact of social isolation is detrimental to the well-being of grandparents, causing stress among family members and diminishing the multicultural fabric of Australian society. Given Melbourne's being a metropolitan city of diverse cultures with a significant number of grandparents, there is a dire need to facilitate connections between “Flying Grannies” and the broader community. How can we mitigate the social isolation experienced by "Flying Grannies" in Melbourne and assist them in adapting to their new surroundings?
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Persona
 
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
