@@ -20,7 +20,7 @@ This module provides an endpoint for translating text using the Google Cloud Tra
 
 ## Endpoints
 
-### ranslate Endpoint (/)
+### Translate Endpoint (/)
 
 - Method: POST
 - Input: query (containing a list of texts to be translated)
