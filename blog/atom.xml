@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://topmello.github.io/blog"/>
     <subtitle>Settle Aid Blog</subtitle>
-    <icon>https://topmello.github.io/img/favicon.ico</icon>
+    <icon>https://topmello.github.io/img/settle-aid-icon.png</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>https://topmello.github.io/blog/welcome</id>
