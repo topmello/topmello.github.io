@@ -31,6 +31,7 @@ Reference:
 - Input: user_credentials (username and password)
 - Output: JWT token
 - Description: Authenticates the user and returns a JWT token. If the user exceeds the maximum allowed login attempts, their IP is blocked for a specified duration.
+- Status Code:
 
 ### Login V2 Endpoint (/v2/login)
 
@@ -38,6 +39,7 @@ Reference:
 - Input: user_credentials (username and password)
 - Output: JWT token and refresh token
 - Description: An enhanced version of the login endpoint. In addition to authenticating the user and returning a JWT token, it also provides a refresh token. If a user already has a refresh token, the old one is deleted and a new one is generated.
+- Status Code:
 
 ### Refresh Token Endpoint (/v2/token/refresh)
 
@@ -45,6 +47,7 @@ Reference:
 - Input: refresh_token
 - Output: New JWT token and the same refresh token
 - Description: Allows the user to get a new JWT token using their refresh token. The refresh token remains the same.
+- Status Code:
 
 ## Security Measures
 
