@@ -9,6 +9,8 @@ This module allow user to create room in sockerIO and let other user join.
 - Description: Activated when a client attempts to connect.
 - Requirements: A JWT token is mandatory to establish a connection.
 - Failure: If the JWT token is missing or invalid, the client will be automatically disconnected.
+- API_URL=https://api.settle-aid.tech
+- SOCKET_PATH=/track-sio/sio/
 - Examples:
 
 ```
