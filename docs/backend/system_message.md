@@ -2,20 +2,28 @@
 
 ## HTTP Exceptions 🚨
 
-| Exception Type               | Status Code | Type                  | Message                                  |
-| ---------------------------- | ----------- | --------------------- | ---------------------------------------- |
-| CustomHTTPException          | 400         | default_type          | DefaultMessage                           |
-| InvalidCredentialsException  | 401         | invalid_credentials   | Invalid credentials                      |
-| UserNotFoundException        | 404         | user_not_found        | User not found                           |
-| UserAlreadyExistsException   | 400         | user_already_exists   | User already exists                      |
-| InvalidRefreshTokenException | 404         | invalid_refresh_token | Invalid refresh token                    |
-| NotAuthorisedException       | 403         | not_authorised        | Not authorised                           |
-| LocationNotFoundException    | 404         | no_location           | Not found any location in the given area |
-| InvalidSearchQueryException  | 400         | invalid_search_query  | Invalid search query                     |
-| RouteNotFoundException       | 404         | no_route              | Not found any route in the given area    |
-| ParametersTooLargeException  | 400         | parameters_too_large  | Parameters too large                     |
-| AlreadyVotedException        | 409         | already_voted         | Already voted                            |
-| VoteNotFoundException        | 404         | vote_not_found        | Vote not found                           |
+| Exception Type               | Status Code | Type                      | Message                                                                          |
+| ---------------------------- | ----------- | ------------------------- | -------------------------------------------------------------------------------- |
+| CustomHTTPException          | 400         | `default_type`            | DefaultMessage                                                                   |
+| InvalidCredentialsException  | 401         | `invalid_credentials`     | Invalid credentials                                                              |
+| UserNotFoundException        | 404         | `user_not_found`          | User not found                                                                   |
+| UserAlreadyExistsException   | 400         | `user_already_exists`     | User already exists                                                              |
+| InvalidRefreshTokenException | 404         | `invalid_refresh_token`   | Invalid refresh token                                                            |
+| NotAuthorisedException       | 403         | `not_authorised`          | Not authorised                                                                   |
+| LocationNotFoundException    | 404         | `no_location`             | Not found any location in the given area                                         |
+| InvalidSearchQueryException  | 400         | `invalid_search_query`    | Invalid search query                                                             |
+| RouteNotFoundException       | 404         | `no_route`                | Not found any route in the given area                                            |
+| ParametersTooLargeException  | 400         | `parameters_too_large`    | Parameters too large                                                             |
+| AlreadyVotedException        | 409         | `already_voted`           | Already voted                                                                    |
+| VoteNotFoundException        | 404         | `vote_not_found`          | Vote not found                                                                   |
+| RequestValidationError       | 400         | `missing`                 | Field required                                                                   |
+| RequestValidationError       | 400         | `string_pattern_mismatch` | String should match pattern                                                      |
+| RequestValidationError       | 400         | `json_invalid`            | JSON decode error                                                                |
+| RequestValidationError       | 400         | `string_type`             | Input should be a valid string                                                   |
+| RequestValidationError       | 400         | `string_too_short`        | String should have at least {} characters                                        |
+| RequestValidationError       | 400         | `string_too_long`         | String should have at most {} characters                                         |
+| RequestValidationError       | 400         | `value_error`             | Location type must be one of 'landmark', 'restaurant', 'grocery', or 'pharmacy'. |
+| RequestValidationError       | 400         | `value_error`             | Route type must be one of 'driving', 'walking', or 'cycling'.                    |
 
 ## SocketIO messages 📨
 
