@@ -44,4 +44,4 @@ newSocket = io(process.env.REACT_APP_API_URL, {
 
 - Description: Activated when a message is sent to the `move` event.
 - Message Format: The message should adhere to the following structure: { lat: float, long: float, roomId: string }.
-- Failure: If the message format is incorrect, an error message will be emitted to the `error_message` event.
+- Failure: If the message format is incorrect, an error message will be emitted to the `error` message type.
