@@ -9,6 +9,29 @@ import styles from "./index.module.css";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+
+  const handleButtonClick = async () => {
+    const url = 'https://api.settle-aid.tech/';
+    const credentials = {
+      username: 'topmello',
+      password: 'da7da0df508738e37f18'
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+        }
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('There was an error fetching the data:', error);
+    }
+  }
+
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
@@ -23,12 +46,12 @@ function HomepageHeader() {
           </Link>
         </div>
         <div className={styles.buttons}>
-          <Link
+          <button 
             className="button button--secondary button--lg"
-            to="https://api.settle-aid.tech/"
+            onClick={handleButtonClick}
           >
             Backend API
-          </Link>
+          </button>
         </div>
       </div>
     </header>

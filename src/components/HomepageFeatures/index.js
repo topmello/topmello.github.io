@@ -58,7 +58,7 @@ export default function HomepageFeatures() {
       </div>
       <div className="container">
         <p>Iteration 2 Build</p>
-        <img src="/img/settle-aid-icon.png" />
+        <img src="/img/qr_it_2.png" />
       </div>
       <div className="container">
         <p>Iteration 3 Build</p>
