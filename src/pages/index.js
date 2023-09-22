@@ -46,25 +46,6 @@ function HomepageHeader() {
             Dev Doc
           </Link>
         </div>
-        <div className={styles.buttons}>
-          <button
-            className="button button--secondary button--lg"
-            onClick={handleButtonClick}
-          >
-            Backend API
-          </button>
-        </div>
-        <Link
-          className="button button--secondary button--lg"
-          to="https://expo.dev/client/"
-        >
-          Expo Go Official
-        </Link>
-        <div className="container">
-          <h2>Iteration 2 Build with Expo Go</h2>
-
-          <img src="/img/qr.png" />
-        </div>
       </div>
     </header>
   );

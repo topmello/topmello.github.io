@@ -43,9 +43,3 @@ To get message in the frontend:
 - const messageType = message.type;
 - const detailsType = message.message.details.type;
 - const detailsMsg = message.message.details.msg;
-
-## Logs 📜
-
-[Logs](https://api.settle-aid.tech/logs/)
-
-<iframe src="https://api.settle-aid.tech/logs/" width="100%" height="600px"></iframe>
