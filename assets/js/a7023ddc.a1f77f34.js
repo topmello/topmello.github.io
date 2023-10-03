@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksettle_aid=self.webpackChunksettle_aid||[]).push([[1713],{3457:e=>{e.exports=JSON.parse('[{"label":"products","permalink":"/blog/tags/products","count":1},{"label":"hello","permalink":"/blog/tags/hello","count":1}]')}}]);
