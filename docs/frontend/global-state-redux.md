@@ -1,12 +1,13 @@
 ---
 sidebar_position: 2
+title: Global State Management
 ---
 # Global State Management
-# AppState Documentation
+## AppState Documentation
 
 Manage global application states such as theme, language, loading status, and notifications with the `AppState` Redux slice.
 
-## **State Structure**
+### **State Structure**
 
 The `AppState` has the following structure:
 
@@ -23,11 +24,11 @@ The `AppState` has the following structure:
 }
 ```
 
-## Usage
+### Usage
 
 To use the `AppState` Redux slice, make sure to add it to your store's reducer.
 
-### State Selectors
+#### State Selectors
 
 These functions allow you to retrieve specific pieces of state:
 
@@ -38,7 +39,7 @@ These functions allow you to retrieve specific pieces of state:
 - `selectPrivacyChecked`: Returns the `privacyChecked` state.
 - `selectRoomId`: Returns the `roomId` state.
 
-### Actions
+#### Actions
 
 - `loading`: Set the `isLoading` state to true.
 - `loaded`: Set the `isLoading` state to false.
@@ -48,11 +49,11 @@ These functions allow you to retrieve specific pieces of state:
 - `setPrivacyChecked` and `setPrivacyUnchecked`: Set the `privacyChecked` state.
 - `setRoomId`: Update the `roomId` state.
 
-# AuthState Documentation
+## AuthState Documentation
 
 Manage authentication states and user-specific details with the `AuthState` Redux slice.
 
-## **State Structure**
+### **State Structure**
 
 The `AuthState` has the following structure:
 
@@ -68,21 +69,21 @@ The `AuthState` has the following structure:
 }
 ```
 
-## **Actions**
+### **Actions**
 
-### Thunks
+#### Thunks
 
 - `loginUser`: An asynchronous action to log in a user. Accepts an object with `username` and `password`.
 - `refreshToken`: An asynchronous action to refresh the user's access token using the refresh token.
 - `registerUser`: An asynchronous action to register a new user. Accepts an object with `username` and `password`.
 
-### Reducers
+#### Reducers
 
 - `logoutUser`: Log out the user and reset their authentication data.
 
-## **Usage**
+### **Usage**
 
-### State Selectors
+#### State Selectors
 
 Utilize the following functions to retrieve specific pieces of the authentication state:
 
@@ -94,11 +95,11 @@ Utilize the following functions to retrieve specific pieces of the authenticatio
 - `selectRefreshToken`: Returns the user's refresh token.
 - `selectRefreshTokenExpiresAt`: Returns the expiration time of the refresh token.
 
-# RouteState Documentation
+## RouteState Documentation
 
 The `RouteState` Redux slice manages user routing preferences and configurations.
 
-## **State Structure**
+### **State Structure**
 
 The `RouteState` has the following structure:
 
@@ -116,9 +117,9 @@ The `RouteState` has the following structure:
 }
 ```
 
-## **Actions**
+### **Actions**
 
-### Reducers
+#### Reducers
 
 - `setLocationType`: Set the location types.
 - `setQueryWithLocationType`: Set the location type, query, and negative query. Both the location type and query arrays must be of the same length.
@@ -127,7 +128,7 @@ The `RouteState` has the following structure:
 - `setSimilarityThreshold`: Set the similarity threshold for the route.
 - `setRouteType`: Set the type of the route (e.g., walking, driving, etc.).
 
-## **Selectors**
+### **Selectors**
 
 Utilize the following functions to retrieve specific pieces of the routing state:
 
