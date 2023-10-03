@@ -40,12 +40,21 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
+            className={`button button--secondary button--lg ${styles.button_width}`}
+            to="/blog"
           >
-            Dev Doc
+            Product Documentation
           </Link>
         </div>
+        <div className={styles.buttons}>
+          <Link
+            className={`button button--secondary button--lg ${styles.button_width}`}
+            to="/docs/intro"
+          >
+            Support & Maintainance Documentation
+          </Link>
+        </div>
+
       </div>
     </header>
   );
