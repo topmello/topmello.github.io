@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Global State Management
+sidebar_position: 5
+title: Global State
 ---
 # Global State Management
 ## AppState Documentation
