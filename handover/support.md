@@ -23,6 +23,48 @@ author:
 
 # Documentation Page
 
+## Prerequisites
+- Node.js and npm (Node Package Manager) should be installed on the local machine.
+- A basic understanding of the project's structure and documentation requirements
+- Access to the project repository and clone the Git repository using the command: 
+  ```bash
+  git clone <repository_url>
+  ```
+
+- Or Downloading and extracting the ZIP file of the repository.
+
+## Installation
+
+Upon cloning or when updating dependencies, execute:
+
+```bash
+npm install
+```
+
+This command will ensure all necessary dependencies are installed.
+
+## Local Development
+
+Whether maintaining the documentation or familiarizing oneself as a new member, it's crucial to preview changes locally. Start the local development server with:
+
+```bash
+npm run start
+```
+
+This server will launch a browser window where most modifications will be reflected live without needing to restart the server.
+
+## Deployment
+
+Ensure membership in the organization. If not a member, fork the repository and proceed to deploy on the forked version.
+
+Replace `<Your GitHub username>` with the respective GitHub username:
+
+```bash
+GIT_USER=<Your GitHub username> npm run deploy
+```
+
+
+
 # Data Workflows
 
 ## Data Collection
