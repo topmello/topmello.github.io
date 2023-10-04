@@ -2,45 +2,39 @@
 sidebar_position: 4
 ---
 
-# User
+# User endpoint
 
-This module provides endpoints related to user operations, such as generating a username, retrieving user details, and creating a new user.
+## **Generate Username**
 
-## Dependencies
+- **URL**: `/user/generate/`
+- **Method**: `GET`
+- **Description**: 
+  This endpoint automatically creates a unique username. It utilizes a Transformer decoding architecture to generate the username and ensures its uniqueness by verifying against existing names in the database.
+  
+- **Response**: 
+  The response will include a `username` string, representing the newly generated username.
 
-- fastapi: The main framework used for building the API.
-- sqlalchemy.orm: Provides session management for database operations and ORM functionalities.
-- passlib.context: Used for hashing and verifying passwords.
-- schemas, models, oauth2: Internal modules containing data schemas, database models, and OAuth2 utilities respectively.
+## **Retrieve User by ID**
 
-## Global Variables
+- **URL**: `/user/{user_id}/`
+- **Method**: `GET`
+- **URL Parameters**: 
+  - `user_id`: The ID of the user to retrieve.
+- **Description**: 
+  This endpoint fetches a specific user based on their `user_id`. It also returns the latest prompts associated with that user. For security reasons, users can only fetch their own details.
+  
+- **Response**: 
+  The response will return the user's details, such as `user_id`, `username`, `created_at`, and an array of their most recent `prompts`.
 
-- router: The APIRouter instance for the user endpoints, prefixed with /user.
-- pwd_context: A context for hashing and verifying passwords using the bcrypt algorithm.
+## **Create User**
 
-## Utility Functions
-
-- hash(password: str): Returns the hashed version of the provided password.
-- verify(password: str, hashed_password: str): Verifies if the provided password matches the hashed password.
-
-## Endpoints
-
-### Generate Username Endpoint (/generate)
-
-- Method: GET
-- Output: A generated username.
-- Description: Generates a unique username. If the generated name exists in the database, it keeps generating until a unique name is found.
-
-### Get User Details Endpoint (/{user_id})
-
-- Method: GET
-- Input: user_id (Path parameter)
-- Output: User details including their prompts.
-- Description: Retrieves the details of a user based on the provided user ID. The endpoint checks if the user ID matches the ID of the currently authenticated user. If not, it raises an authorization error.
-
-### Create User Endpoint (/)
-
-- Method: POST
-- Input: User details (username, password, etc.)
-- Output: Created user details.
-- Description: Creates a new user in the database. Before creating, it checks if the username is already registered. If so, it raises an error. The password provided by the user is hashed before storing in the database.
+- **URL**: `/user/`
+- **Method**: `POST`
+- **Description**: 
+  This endpoint allows the creation of a new user. It ensures that the username is unique and hashes the password before storing it in the database.
+  
+- **Body Parameters**: 
+  - `user`: The user details to be created. It includes fields like `username` and `password`.
+  
+- **Response**: 
+  The response will return the created user's details, including `user_id`, `username`, and `created_at`.

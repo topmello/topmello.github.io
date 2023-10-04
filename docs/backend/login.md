@@ -2,55 +2,42 @@
 sidebar_position: 3
 ---
 
-# Login
+# Authentication
 
-Implemented using OAuth2 with Password (and hashing), Bearer with JWT tokens
-JWT (JSON Web Tokens) token: Anyone could recover the information from the contents, but it's signed. So, when you receive a token that you emitted, you can verify that you actually emitted it. This module provides authentication endpoints for users. It includes features like login, token refresh, and IP-based rate limiting to prevent brute-force attacks.
 
-Reference:
 
-- https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
-- https://jwt.io/introduction
+## **Authenticate User (v1)**
 
-## Global Variables
+- **URL**: `/login/`
+- **Method**: `POST`
+- **Body Parameters**: 
+  - `user_credentials`: A JSON object with the user's `username` and `password`.
+- **Description**: 
+  This endpoint attempts to authenticate a user using the provided credentials. If successful, it returns a JWT access token.
+  
+- **Response**: 
+  A JSON object containing an `access_token` and its `token_type` which is "bearer".
 
-- ip_blocklist: A dictionary to store blocked IP addresses.
-- ip_attempts: A dictionary to track login attempts by IP.
-- BLOCK_DURATION: Duration for which an IP remains blocked after exceeding max attempts.
-- MAX_ATTEMPTS: Maximum allowed login attempts before an IP is blocked.
+## **Authenticate User (v2)**
 
-## Utility Functions
+- **URL**: `/login/v2/`
+- **Method**: `POST`
+- **Body Parameters**: 
+  - `user_credentials`: A JSON object with the user's `username` and `password`.
+- **Description**: 
+  This enhanced version of the login endpoint offers additional features over its predecessor. When a user is authenticated, it returns a JWT access token, as well as a refresh token to enable future token renewals without requiring re-authentication. The endpoint also handles cases where the login request originates from a web UI, setting the JWT as a cookie.
+  
+- **Response**: 
+  A JSON object containing the user's `user_id`, `username`, the `access_token` and its `token_type` which is "bearer", as well as the `refresh_token` and their respective expiration times.
 
-- check_blocked_ip(request: Request): Checks if the IP from the request is blocked. If blocked and the block duration has not expired, it raises an HTTPException. If the block duration has expired, it unblocks the IP.
+## **Refresh Access Token**
 
-## Endpoints
-
-### Login Endpoint (/login)
-
-- Method: POST
-- Input: user_credentials (username and password)
-- Output: JWT token
-- Description: Authenticates the user and returns a JWT token. If the user exceeds the maximum allowed login attempts, their IP is blocked for a specified duration.
-- Status Code:
-
-### Login V2 Endpoint (/v2/login)
-
-- Method: POST
-- Input: user_credentials (username and password)
-- Output: JWT token and refresh token
-- Description: An enhanced version of the login endpoint. In addition to authenticating the user and returning a JWT token, it also provides a refresh token. If a user already has a refresh token, the old one is deleted and a new one is generated.
-- Status Code:
-
-### Refresh Token Endpoint (/v2/token/refresh)
-
-- Method: POST
-- Input: refresh_token
-- Output: New JWT token and the same refresh token
-- Description: Allows the user to get a new JWT token using their refresh token. The refresh token remains the same.
-- Status Code:
-
-## Security Measures
-
-- Rate Limiting: The endpoints are rate-limited to prevent abuse.
-- IP Blocking: IP addresses are temporarily blocked after multiple failed login attempts to prevent brute-force attacks.
-- JWT: JSON Web Tokens (JWT) are used for authentication and authorization.
+- **URL**: `/login/v2/refresh/`
+- **Method**: `POST`
+- **Body Parameters**: 
+  - `refresh_token`: A JSON object with the refresh token used to generate a new access token.
+- **Description**: 
+  This endpoint allows a user to refresh their JWT access token using a valid refresh token. By using the refresh mechanism, users can obtain a new access token without undergoing a full re-authentication process.
+  
+- **Response**: 
+  A JSON object containing the user's `user_id`, `username`, a new `access_token` and its `token_type` which is "bearer", as well as the existing `refresh_token` and their respective expiration times.

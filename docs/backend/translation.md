@@ -20,9 +20,15 @@ This module provides an endpoint for translating text using the Google Cloud Tra
 
 ## Endpoints
 
-### Translate Endpoint (/)
 
-- Method: POST
-- Input: query (containing a list of texts to be translated)
-- Output: Translated texts.
-- Description: Translates a list of texts into the target language (English) using the Google Cloud Translation API.
+### **Translate Texts**
+
+- **URL**: `/translate/`
+- **Method**: `POST`
+- **Description**: 
+  This endpoint allows users to translate a list of texts. Users provide a list of texts, and the service returns the translated versions of those texts.
+- **Request Body**:
+  - `texts` (list of strings): The list of texts that need to be translated, as specified in the `schemas.TranslateQuery` model.
+
+- **Response**: 
+  The response will be a JSON object containing the translated texts. The structure of the response is given by the `schemas.TranslateRes` model, which primarily consists of the `results` attribute. The `results` attribute holds the list of translated texts corresponding to the input texts provided.
