@@ -1,12 +1,12 @@
 
 ---
 title: Support Documentation
-author: 
-  - Jirathip Kunkanjanathorn - 32999860
-  - A - 12345678
-  - B - 12345678
-  - C - 12345678
-  - D - 12345678
+author:
+  - Can Wang
+  - Gordon Leung
+  - Jiashi Chen
+  - Jincheng Song
+  - Jirathip Kunkanjanathorn
 ---
 
 \thispagestyle{empty}
@@ -28,7 +28,7 @@ author:
 - A basic understanding of the project's structure and documentation requirements
 - Access to the project repository and clone the Git repository using the command: 
   ```bash
-  git clone <repository_url>
+  git clone https://github.com/topmello/topmello.github.io.git
   ```
 
 - Or Downloading and extracting the ZIP file of the repository.
@@ -67,7 +67,24 @@ GIT_USER=<Your GitHub username> npm run deploy
 
 # Data Workflows
 
+## Prerequisites
+
+- Python 3.8 or above and Pip should be installed on the local machine.
+- Access to to the project repository and clone the Git repository using the command: 
+  ```bash
+  git clone https://github.com/topmello/settle-aid-data-wrangling.git
+
+- Or downloading and extracting the ZIP file of the repository.
+
 ## Data Collection
+
+
+
+| Name                                                                                                                                                    | Frequency of Updates | License |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|------------|
+| [Landmarks and places of interest](https://data.melbourne.vic.gov.au/explore/dataset/landmarks-and-places-of-interest-including-schools-theatres-health-services-spor/information/)                        | Monthly              | CC BY      |
+| [Business establishments location and industry classification](https://data.melbourne.vic.gov.au/explore/dataset/business-establishments-with-address-and-industry-classification/information/) | Annually             | CC BY      |
+| [Café, restaurant, bistro seats](https://data.melbourne.vic.gov.au/explore/dataset/cafes-and-restaurants-with-seating-capacity/information/)                          | Annually             | CC BY      |
 
 ## Data Processing
 
