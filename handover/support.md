@@ -433,26 +433,58 @@ By following these steps, you'll successfully launch a new service in the backen
    ```bash
    sudo docker-compose up -d -p settle-aid
    ```
-
 5. Review Resources: Ensure the system hasn't run out of essential resources like CPU, RAM, or storage.
-
-
-
 
 
 # Frontend
 
 ## How to run the system
 
+1. Install [Node.js 18 LTS](https://nodejs.org/download/release/v18.18.0/)
+2. Clone or extract the frontend code to local folder
+3. Run commandline tool or open code folder in code editor
+4. Run the following command in folder that contains all code files
+   ```bash
+   npm install
+   ```
+5. Now you can run the following command to start the development server
+   ```bash
+   npm run start
+   ```
+6. After development server finish starting process, you can scan the QR code in the commandline using Expo Go application(Android) or using system camera(iOS)
 
 ## How to shutdown the system
 
+Close the commandline tool or use "Ctrl + C" shortcut in commandline to terminate the development server.
 
 ## How to connect to the backend
 
 ## How to deploy the system
+### Deployment
 
+- Official Doc: https://docs.expo.dev/build-reference/apk/
 
+#### Login:
+
+```bash
+expo login
+```
+> If console throw "verify that the path is correct and try again" when using the commands, add "npx" before each command except "npm" one would help.  
+#### Install EAS Cli:
+
+```bash
+npm install --global eas-cli
+```
+#### Link the code base to project:
+
+```bash
+eas init --id 714abc65-7237-4be7-8349-feffeae9f93d
+```
+#### Build:
+
+```bash
+eas build -p android --profile preview
+```
 
 # Training and knowledge needed to operate the system
 
@@ -468,17 +500,33 @@ By following these steps, you'll successfully launch a new service in the backen
 - **PyTest:** Proficiency in writing and running unit tests using PyTest to ensure the functionality and robustness of the codebase.
 - **PyTorch:** Basics of machine learning and deep learning concepts, and how to utilize PyTorch for training and deploying models.
 
-## TypeScript Development
+## React Native Development
+- **JavaScript** Before diving into any JavaScript-based framework or library, it's important to have a solid understanding of core JavaScript concepts.
+
+- **React** Functional Components and Hooks: Know how to use useState, useEffect, useContext, and other built-in hooks.
+- **JSX** The syntax used to write UI elements in React.
+- **React Native** Understanding of the lifecycle, layout, and styling specific to React Native. Knowledge about the difference between React Native and standard React (for web).
+- **React Native Paper** Knowledge about Paper's UI components and how to implement them. Familiarity with theming and customization.
+- **React Native Dates** Understanding how to integrate the date selector with forms and other UI elements.
+- **Expo** Basics of creating, running, and debugging an Expo project. Understanding of how to install and use various Expo SDKs. Familiarity with the Expo workflow, and publishing.
+- **Axios** How to make API calls (GET, POST, etc.). Handling responses and errors.
+- **Redux** Understanding of the Flux architecture and how Redux improves upon it. Creation of actions, reducers, and the store. Middleware, async actions (like redux-thunk).
+- **Redux Persist** Integration with Redux to persist the store. Knowledge about storage engines and their configuration.
+- **React i18next**Internationalization concepts. Integration with React for dynamic translations. 
+- **Expo Location and React Native Maps** Fetching geolocation data. Integrating maps, adding markers, and interacting with maps. 
+- **Expo Router** Setting up routing for a React Native app. Transition between different screens/components.
+
+## General Development
+- **Version Control Using Git** Effective tracking and management of your codebase.
+- **Debugging** Utilizing debugging tools for React Native and python.
+- **Responsive Design** Ensuring app looks and functions well across a range of device sizes.
+- **Async Programming** Familiarity with Promises, async/await for handling asynchronous operations.
+
 
 ## API and Web Frameworks
 - **FastAPI:** Mastery of creating, deploying, and managing APIs using FastAPI, coupled with an understanding of asynchronous programming.
 - **SlowAPI:** Knowledge about rate limiting and its implementation using SlowAPI to manage request traffic and protect the system.
 - **Python SocketIO Server:** Familiarity with WebSockets and real-time bi-directional communication using SocketIO.
-
-
-## Mobile Development
-- React Native: Understanding of React Native and its capabilities in building cross-platform mobile applications.
-- SocketIO Client: Knowledge of SocketIO client and its implementation in React Native.
 
 
 ## External Services and Data integrations
