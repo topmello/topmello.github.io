@@ -78,7 +78,7 @@ GIT_USER=<Your GitHub username> npm run deploy
 
 ## Data Collection
 
-
+In order to collect the open data, the following datasets are accessed from the [Melbourne Open Data Platform](https://data.melbourne.vic.gov.au/) using CSV format which require to download manually:
 
 | Name                                                                                                                                                    | Frequency of Updates | License |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|------------|
@@ -88,7 +88,13 @@ GIT_USER=<Your GitHub username> npm run deploy
 
 ## Data Processing
 
+After the data is collected, the data should be store in the ./data folder in the project directory. Then, the data processing can be done by running each scipt related to the location type including restaurant, landmark, grocery, and pharmacy.
+
+Noted that this step will take a long time to finish and it can be skipped to run backend server directly if the data is not updated and already processed.
+
 ## Data Ingestion
+
+The processed data is stored in the ./data folder in the project directory as JSON file. The data is then ingested into the database by copying to JSON file to backend repository and running the ingestion script.
 
 # Backend
 
@@ -98,8 +104,8 @@ GIT_USER=<Your GitHub username> npm run deploy
 2. Install Docker with Docker Compose
 3. Run `docker-compose up -d` in the root directory (Compose V2 do not have - between docker-compose)
 4. SSH into the backend container with `docker exec -it backend bash`
-5. Migrate the database with `alembic upgrade head` inside the container
-6. Insert the data with `python3 scripts/insert_data.py` inside the container
+5. Migrate the database with `alembic upgrade head` inside the container (For the first time or when there's a change in the database schema)
+6. Insert the data with `python -m scripts.insert_data` inside the container (For the first time or when there's a change in the dataset)
 
 ## How to shutdown the system
 
@@ -161,33 +167,15 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
 6. Under the Firewall settings, make sure to allow HTTP and HTTPS traffic if your application needs to be accessed over the internet.
 7. Once filled out, click "Create" to instantiate your VM.
 8. SSH into the instance and install Docker and Docker Compose. The instructions can be found here: https://docs.docker.com/engine/install/ubuntu/
-9. Set up NGINX for reverse proxy in the instance.
-    
-    9.1 Install NGINX: `sudo apt install nginx`
-
-    9.2 Create a new file in /etc/nginx/sites-available/ and name it settle-aid
-
-    9.3 Copy the following configuration into the file:
-
-    ```to be filled in later```
-
-    9.4 Create a symbolic link to the file in /etc/nginx/sites-enabled/:
-
-    ```sudo ln -s /etc/nginx/sites-available/settle-aid /etc/nginx/sites-enabled/```
-
-    9.5 Test the configuration and restart NGINX:
-
-    ```sudo nginx -t```
-
-    ```sudo systemctl restart nginx```
-
+9. Install VIM using `sudo apt install vim`. (Optional)
 
 ### Deploying on GCP
 
 1. SSH into GCP Instance: `gcloud compute ssh <instance-name> --zone <zone>`
 2. Change directory: `cd ..` (Optional)
-3. Make sure docker-compose.yaml is exist in the directory. The configuration for production is as following
-  
+3. Make sure `docker-compose.yaml` and `<domain-name>` is exist in the directory. And, the domain DNS has been point to the backend virtual machine external IP address. For the first time configuration files for production are needed to be created as below. Noted that the keys and domain name needed to be changed according to the new production environment.
+   
+   - docker-compose.yaml
    ```yaml
    version: '3'
    services:
@@ -214,8 +202,6 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
        image: jirathipk/settle-aid-backend:latest
        container_name: settle-aid-backend
        user: myuser
-       ports:
-         - "8000:8000"
        environment:
          - DATABASE_HOSTNAME=db
          - DATABASE_NAME=database
@@ -239,6 +225,10 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
          - USER_CACHE_EXPIRY=3600
          - TRANSFORMERS_CACHE=/usr/src/app/transformers_cache
          - PYTEST_ADDOPTS="-o cache_dir=/usr/src/app/.pytest_cache"
+         - VIRTUAL_HOST=staging.settle-aid.tech
+         - VIRTUAL_PORT=8000
+         - LETSENCRYPT_HOST=staging.settle-aid.tech
+         - LETSENCRYPT_EMAIL=jirathip.ku@gmail.com
        depends_on:
          - db
          - redis
@@ -258,12 +248,86 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
          - POSTGRES_HOST=db
          - POSTGRES_DB=database
          - POSTGRES_USER=db_user
+     nginx-proxy:
+       image: nginxproxy/nginx-proxy
+       container_name: nginx-proxy
+       ports:
+         - "80:80"
+         - "443:443"
+       volumes:
+         - /var/run/docker.sock:/tmp/docker.sock:ro
+         - certs:/etc/nginx/certs
+         - vhost:/etc/nginx/vhost.d
+         - html:/usr/share/nginx/html
+         - ./api.settle-aid.tech:/etc/nginx/vhost.d/api.settle-aid.tech # production domain name
+
+     acme-companion:
+       image: nginxproxy/acme-companion
+       container_name: nginx-proxy-acme
+       volumes:
+         - /var/run/docker.sock:/var/run/docker.sock:ro
+         - certs:/etc/nginx/certs
+         - html:/usr/share/nginx/html
+         - vhost:/etc/nginx/vhost.d
+         - acme:/etc/acme.sh
+       environment:
+         - NGINX_PROXY_CONTAINER=nginx-proxy
+       depends_on:
+         - nginx-proxy
+
+   volumes:
+     certs:
+     vhost:
+     html:
+     acme:
+     database_volume:
+     redis_volume:
+     models_volume:
+     dbbackups_volume:
+   ```
+   - domain name for NGINX proxy
+   ```
+   location /logs/stream/ {
+       proxy_pass http://localhost:8000;
+       proxy_set_header Host $host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+       # SSE specific configurations
+       proxy_http_version 1.1;
+       proxy_set_header Connection '';
+       proxy_buffering off;
+       proxy_cache off;
+       send_timeout 600s;
+   }
+
+   location /track-sio/sio/ {
+       proxy_pass http://localhost:8000;
+       proxy_set_header Host $host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+       # WebSocket specific configurations
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection "upgrade";
+
+       # Disable buffering when the nginx proxy gets very busy (protects upstream service)
+       proxy_buffering off;
+       }
+
    ```
    
 4. Pull the Latest Docker Compose Configuration: `sudo docker-compose pull`
 5. Start the Containers: `sudo docker-compose -p settle-aid up -d`
   - The -p flag is to set a project name, which can be useful for running multiple environments on the same host
   - The -d flag is to run the containers in the background
+6. For the first time, run the migration script: 
+   ```bash
+   sudo docker exec -it backend alembic upgrade head
+
+   sudo docker exec -it backend python -m scripts.insert_data
+   ```
 
 ### Actions for Developers:
 
@@ -285,6 +349,8 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
    alembic upgrade head
    ```
 6. Define ORM models in the `app/models.py` to interact with the new table accordingly.
+
+Note: Please avoid running alembic revision on the production database. Instead, create the migration locally and apply it to the production database.
 
 
 ## How to backup and restore the database
@@ -457,7 +523,6 @@ By following these steps, you'll successfully launch a new service in the backen
 
 Close the commandline tool or use "Ctrl + C" shortcut in commandline to terminate the development server.
 
-## How to connect to the backend
 
 ## How to deploy the system
 ### Deployment
@@ -470,21 +535,32 @@ Close the commandline tool or use "Ctrl + C" shortcut in commandline to terminat
 expo login
 ```
 > If console throw "verify that the path is correct and try again" when using the commands, add "npx" before each command except "npm" one would help.  
-#### Install EAS Cli:
 
+#### Install EAS Cli:
+Run the following command to install EAS Cli.
 ```bash
 npm install --global eas-cli
 ```
 #### Link the code base to project:
-
+Make sure the project ID is correct and accessible which can be check in the Expo Dashboard.
 ```bash
 eas init --id 714abc65-7237-4be7-8349-feffeae9f93d
 ```
 #### Build:
-
+Run the following command to build the app in expo server.
 ```bash
 eas build -p android --profile preview
 ```
+
+
+
+# Connect frontend to the backend and APIs
+In order to connect the frontend to the backend server, environment variables need to be set up. The following steps are for setting up the environment variables in the frontend.
+
+1. Check for URL or IP address of the backend server and the port number. The default port number is 8000. This depends on whether it is development or production environment. Typically, the development environment is localhost:8000 and the production environment is the IP address of the server with port 8000. With HTTPS enabled, the production environment URL is the domain name of the server.
+2. In the frontend, navigate to eas.json and make sure the `EXPO_PUBLIC_API_URL` is the backend server URL. For example, `https://api.settle-aid.tech`.
+3. For other APIs such as Google places and weather APIs, ...
+
 
 # Training and knowledge needed to operate the system
 
@@ -545,19 +621,49 @@ eas build -p android --profile preview
 - **Continuous Integration/Continuous Deployment:** Familiarity with CI/CD processes, especially with tools like GitHub Actions, to automate testing and deployment workflows.
   
 
-# Change management
-
 
 # Resources
 - GitHub Repository:
-  - Frontend: to be filled
-  - Backend: to be filled
-  - Documentation page: to be filled
-  - Data Wrangling: to be filled
+  - [Frontend](https://github.com/topmello/settle-aid-frontend.git)
+  - [Backend](https://github.com/topmello/settle-aid-backend.git)
+  - [Documentation page](https://github.com/topmello/topmello.github.io.git)
+  - [Data Wrangling](https://github.com/topmello/settle-aid-data-wrangling.git)
 
+## Internal
 - [Project Documentation Page](https://topmello.github.io)
 - [Backend API Documentation](https://api.settle-aid.tech)
 - [Backend Logging](https://api.settle-aid.tech/logs)
 - [Backend UI for testing](https://api.settle-aid.tech/ui)
 
+## External
 
+- [React Native](https://reactnative.dev/) - Fundamental Framework to build native app for Android and iOS in React
+- [React Native Paper](https://reactnativepaper.com/) - UI component and theme library for UI consistency accross devices
+- [React Native Dates](https://web-ridge.github.io/react-native-paper-dates/docs/intro) - Date selector component for React Native Paper
+- [Expo Router](https://docs.expo.dev/routing/introduction/) - Routing between screens
+- [Axios](https://axios-http.com/docs/intro) - API request library
+- [Redux](https://redux.js.org/) - Global state management for React app
+- [Redux Persist](https://github.com/rt2zz/redux-persist) - Data persistance for Redux
+- [React i18next](https://react.i18next.com/) - Internalization for React
+- [Expo Location](https://docs.expo.dev/versions/latest/sdk/location/) - Providing access to Geolocation
+- [React Native Maps](https://www.npmjs.com/package/react-native-maps?activeTab=readme) - Cross-platform map component
+- [Expo Calendar](https://docs.expo.dev/versions/latest/sdk/calendar/) - Provides an API for interacting with the device's system calendars
+- [Expo KeepAwake](https://docs.expo.dev/versions/latest/sdk/keep-awake/) - A React component that prevents the screen from sleeping when rendered.
+- [Expo Localization](https://docs.expo.dev/versions/latest/sdk/localization/) - A library that provides an interface for native user localization information.
+- [Expo Print](https://docs.expo.dev/versions/latest/sdk/print/) - A library that provides printing functionality for Android and iOS (AirPrint).
+- [React Native Share](https://reactnative.dev/docs/share) - Provide access to system share API
+- [Socket.io Client](https://www.npmjs.com/package/socket.io-client) - For realtime messaging
+- [PostgreSQL](https://www.postgresql.org): Serving as our primary relational database.
+- [SQLALchemy](https://www.sqlalchemy.org): A Python-based ORM.
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/): Alembic is a lightweight database migration tool that enables the creation of database schemas and the migration of data.
+- [Redis](https://redis.io): Cache database for storing frequently accessed data and managing TTL for cache expiry.
+- [FastAPI](https://fastapi.tiangolo.com): Python-based web framework that enables the creation of APIs. 
+- [Pydantic](https://docs.pydantic.dev/latest/): Pydantic is a Python library that facilitates data validation and parsing. It is used to validate user inputs, ensuring that the data is of the correct type and format.
+- [SlowAPI](https://github.com/laurentS/slowapi): A rate limiting library for Starlette and FastAPI.
+- Open Data Melbourne: Leveraging datasets from Melbourne's open data platform, our platform gains access to a wealth of city-specific information, ranging from infrastructure to cultural landmarks. This data integration enhances the platform's accuracy and relevance when offering route suggestions or city insights to users.
+- [Python SocketIO Server](https://python-socketio.readthedocs.io/en/latest/): Facilitating real-time communication, especially for location tracking features.
+- MapBox, Google Translate & Google Location APIs: These external APIs are integrated to enrich the platform's functionalities. MapBox assists in generating routes, Google Translate aids in user input translation, and the Google API is pivotal for location search, all culminating in a comprehensive user experience.
+- [Huggingface's Sentence Transformers](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2): This AI-powered integration enhances the platform's semantic search capabilities.
+- [PyTorch](https://pytorch.org): PyTorch is a Python-based machine learning library that enables the use of deep learning models. It is used to train and deploy the name generator model.
+- [PyTest](https://pytest.org): PyTest is a Python testing framework that enables the creation of unit tests. It is used to ensure the quality and integrity of the codebase, especially when new features are added.
+- [Docker](https://www.docker.com): Docker containers are used to encapsulate the development environment.
