@@ -42,3 +42,14 @@
     max-width: 100% !important;
   }
 }
+
+.hero {
+  background-image: url("/static/img/showcase2.png");
+  background-size: cover;
+  background-blend-mode: multiply;
+  background-color: rgba(59, 70, 118, 0.4);
+}
+
+[data-theme='dark'] .hero {
+  background-color: rgba(53, 81, 207,0.1);
+}
