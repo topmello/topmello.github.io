@@ -25,3 +25,20 @@
   --ifm-color-primary-lighter: #fbfcff;
   --ifm-color-primary-lightest: #ffffff;
 }
+
+
+@media print {
+  /* Hide the sidebar */
+  .sidebar, .navbar, .footer, .theme-doc-breadcrumbs {
+    display: none !important;
+  }
+
+
+  /* Ensure the main content takes full width */
+  .main {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}

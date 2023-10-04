@@ -75,6 +75,30 @@ Activated either manually or when there's a push to the deploy branch. The steps
 4. Building Docker images from Dockerfiles (Dockerfile.db & Dockerfile.backend).
 5. Pushing these images to Docker Hub.
 
+## Setting up GCP Compute Instance
+
+Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
+
+1. Go to the GCP Console at https://console.cloud.google.com/.
+2. Navigate to the Compute Engine and then VM Instances.
+3. Click on "Create Instance."
+4. Fill out the necessary details like Name, Region, Zone, Machine type, etc.
+5. In the Boot Disk section, select an Ubuntu as OS.
+6. Under the Firewall settings, make sure to allow HTTP and HTTPS traffic if your application needs to be accessed over the internet.
+7. Once filled out, click "Create" to instantiate your VM.
+8. SSH into the instance and install Docker and Docker Compose. The instructions can be found here: https://docs.docker.com/engine/install/ubuntu/
+9. Set up NGINX for reverse proxy in the instance.
+  9.1 Install NGINX: `sudo apt install nginx`
+  9.2 Create a new file in /etc/nginx/sites-available/ and name it settle-aid
+  9.3 Copy the following configuration into the file:
+  ```to be filled in later```
+  9.4 Create a symbolic link to the file in /etc/nginx/sites-enabled/:
+  ```sudo ln -s /etc/nginx/sites-available/settle-aid /etc/nginx/sites-enabled/```
+  9.5 Test the configuration and restart NGINX:
+  ```sudo nginx -t```
+  ```sudo systemctl restart nginx```
+
+
 ## Deploying on GCP
 
 - SSH into GCP Instance: `gcloud compute ssh <instance-name> --zone <zone>`

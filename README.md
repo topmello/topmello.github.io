@@ -53,3 +53,10 @@ $ GIT_USER=<Your GitHub username> npm run deploy
 ```
 Now you should see changes in [topmello.github.io](https://topmello.github.io/)
 ***Remember to PUSH the changes to Github too after writing***
+
+
+
+### Generate PDF
+$ sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
+
+$ pandoc support.md -o support.pdf --pdf-engine=pdflatex
