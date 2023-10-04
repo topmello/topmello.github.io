@@ -5,6 +5,8 @@ title: Keyboard Event
 
 # Keyboard Event
 
+Sometimes, we need to hide the bottom bit of the applicaton when the system keyboard pops up to prevent more important text inputs to be unreachable for users. For example, when user click on username input field, the 
+
 ## `useKeyboardEvent` Hook
 
 React Native offers a rich API set for various device-specific behaviors, one of which is keyboard interactions. Built atop React Native's `Keyboard` API, the `useKeyboardEvent` hook provides a seamless way to track the keyboard's visibility state within the lifecycle of your React components.
