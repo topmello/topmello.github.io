@@ -1,12 +1,15 @@
 
 ---
-title: Support Documentation
+title: >
+  Settle-Aid: Support Documentation
+subtitle: TP01 - Top Mello 
 author:
   - Can Wang
   - Gordon Leung
   - Jiashi Chen
   - Jincheng Song
   - Jirathip Kunkanjanathorn
+date: 2023-10-05
 ---
 
 \thispagestyle{empty}
@@ -648,7 +651,21 @@ In order to connect the frontend to the backend server, environment variables ne
 - **System architecture:** A holistic understanding of how each component of the tech stack interacts with each other, the data flow, and error handling mechanisms.
 - **Continuous Integration/Continuous Deployment:** Familiarity with CI/CD processes, especially with tools like GitHub Actions, to automate testing and deployment workflows.
   
+# Change Management
 
+As technology and user needs evolve, our application may undergo adjustments. Here's a structured approach to managing these changes:
+
+1. **Preparation**: Build the platform with adaptability in mind, anticipating potential modifications, whether they're minor adjustments or significant additions.
+ 
+2. **Documentation**: Maintain detailed records of all changes. This ensures clarity and consistency for all team members, both current and future.
+
+3. **Testing**: Before rolling out any change, conduct comprehensive testing, including unit and integration tests, to ensure stability. Moreover, if there is change that need to be done on the production level, it is recommended to test the change on the staging environment first.
+
+4. **Communication**: Keep all stakeholders informed about notable changes. This can be done through update logs or direct notifications.
+
+5. **Training**: If a change affects user interaction or developer workflows, provide necessary training or guidance.
+
+6. **Feedback**: After implementing a change, solicit feedback to identify any potential issues or areas for further refinement.
 
 # Resources
 - GitHub Repository:

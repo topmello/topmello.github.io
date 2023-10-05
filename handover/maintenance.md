@@ -1,15 +1,17 @@
 
 
 ---
-title: Maintenance Documentation
+title: >
+  Settle-Aid: Maintenance Documentation
+subtitle: TP01 - Top Mello 
 author:
   - Can Wang
   - Gordon Leung
   - Jiashi Chen
   - Jincheng Song
   - Jirathip Kunkanjanathorn
+date: 2023-10-05
 ---
-
 \thispagestyle{empty}
 
 
@@ -22,6 +24,7 @@ author:
 
 # Introduction
 
+This guide provides an in-depth look into the backend and frontend technologies that underpin our system. Each technology, from PostgreSQL to Socket.io on the backend and from React Native to Axios on the frontend, has been selected to optimize performance, security, and user experience. This documentation is intended to offer clarity on our system's architecture and design choices, serving as a valuable reference for developers and other stakeholders involved in maintaining and enhancing the platform.
 
 
 # Backend
@@ -1021,3 +1024,7 @@ Navigating back to the previous screen is as simple as it sounds. Use the `route
 ```javascript
 router.back();
 ```
+
+# Conclusion
+
+To conclude, this documentation outlines the cohesive architecture of our platform, detailing the backend's capabilities and the frontend's user interface features. The chosen technology stack ensures a balance between robust data handling, real-time interactions, and a consistent user experience across devices. As the platform evolves, this guide will remain an essential resource for developers, ensuring that the core principles and technologies are understood and easily referenced for future updates and maintenance.
