@@ -42,7 +42,7 @@ Integration with external APIs like **MapBox**, **Google Translate**, and **Goog
 ![System Diagram](../static/img/system-diagram.png)
 
 \newpage
-
+ 
 # Documentation Page
 
 ## Prerequisites
@@ -581,7 +581,13 @@ In order to connect the frontend to the backend server, environment variables ne
 
 1. Check for URL or IP address of the backend server and the port number. The default port number is 8000. This depends on whether it is development or production environment. Typically, the development environment is localhost:8000 and the production environment is the IP address of the server with port 8000. With HTTPS enabled, the production environment URL is the domain name of the server.
 2. In the frontend, navigate to eas.json and make sure the `EXPO_PUBLIC_API_URL` is the backend server URL. For example, `https://api.settle-aid.tech`.
-3. For other APIs such as Google places and weather APIs, ...
+## For third party APIs
+
+### Google Places API key
+1. Config EXPO_PUBLIC_GOOGLE_PLACES_API_KEY in root directory .env file as your api key from [Google Cloud](https://developers.google.com/maps/documentation/places/web-service/get-api-key/)
+2. If you want a ready to build api config, you also need to add this api key to
+   * eas.json, under build.\[environment name\].EXPO_GOOGLE_PLACES_API_KEY
+   * app.json, under expo.android.config.googleMaps.apiKey
 
 
 # Training and knowledge needed to operate the system
