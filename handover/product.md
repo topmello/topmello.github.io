@@ -51,7 +51,7 @@ Settle Aid is important for both "Flying Grannies" and Australian society as it 
 
 ## Ethics Canvas
 
-Link to Ethics Canvas Document: https://drive.google.com/drive/u/1/folders/1NgtfeWH2DmG0anxPpRwZILXTMLXW23k2
+Link to Ethics Canvas Document: [Link](https://drive.google.com/drive/u/1/folders/1NgtfeWH2DmG0anxPpRwZILXTMLXW23k2)
 
 ## Compliances with ACS Code of Conduct
 
@@ -85,27 +85,27 @@ Settle Aid strictly adheres to the ACS Code of Conduct by prioritizing privacy, 
 - 1.2.6 Professionalism: Settle Aid promotes professionalism by providing tools and resources that help "Flying Grannies" integrate into Australian society, demonstrating respect for cultural norms and ethical behavior.
 
 # System Components
-- Analysis and Design Report: https://drive.google.com/drive/u/1/folders/1arcBiH8aXb4UXkZcHMHF3gsvGApjIN_4 
-- Design Artefacts: https://drive.google.com/drive/u/1/folders/12U2ci-LVh7MFYuxTqAGCc7TwB0MN2w8y 
-- Build: https://drive.google.com/drive/u/1/folders/1MESszIor3mW6dLv3uAQ8axbA9c4cLYTp 
-- System Architecture and Security: https://drive.google.com/drive/u/1/folders/1FlGdO2h_CC9pXnL91hzOsJKSX1t3RvIW 
-- Data Governance: https://drive.google.com/drive/u/1/folders/172ae08Ama2weGeQcIglKKxn01kROsSxd 
-- Risk Management: https://drive.google.com/drive/u/1/folders/1dYvk0Siv2EiO_g1ghvmKZRfVIegxEVUi 
-- Testing: https://drive.google.com/drive/u/1/folders/11drqq90oPUwboIntG-dbnjOtUJ4KpcxB 
-- Team Information: https://drive.google.com/drive/u/1/folders/1w3Mm5AofPde4ViVbcEUMYReExJuHiw0o 
+- Analysis and Design Report: [Link](https://drive.google.com/drive/u/1/folders/1arcBiH8aXb4UXkZcHMHF3gsvGApjIN_4)
+- Design Artefacts: [Link](https://drive.google.com/drive/u/1/folders/12U2ci-LVh7MFYuxTqAGCc7TwB0MN2w8y)
+- Build: [Link](https://drive.google.com/drive/u/1/folders/1MESszIor3mW6dLv3uAQ8axbA9c4cLYTp) 
+- System Architecture and Security: [Link](https://drive.google.com/drive/u/1/folders/1FlGdO2h_CC9pXnL91hzOsJKSX1t3RvIW) 
+- Data Governance: [Link](https://drive.google.com/drive/u/1/folders/172ae08Ama2weGeQcIglKKxn01kROsSxd)
+- Risk Management: [Link](https://drive.google.com/drive/u/1/folders/1dYvk0Siv2EiO_g1ghvmKZRfVIegxEVUi)
+- Testing: [Link](https://drive.google.com/drive/u/1/folders/11drqq90oPUwboIntG-dbnjOtUJ4KpcxB)
+- Team Information: [Link](https://drive.google.com/drive/u/1/folders/1w3Mm5AofPde4ViVbcEUMYReExJuHiw0o)
 
 # Product Video
-- Link to Product Video: https://drive.google.com/drive/u/1/folders/1XPzDcOo-xYSG1YaqUdSItdQcDsL2jQTF
+- Link to Product Video: [Link](https://drive.google.com/drive/u/1/folders/1XPzDcOo-xYSG1YaqUdSItdQcDsL2jQTF)
 
 # Team Information
 
 | Name            | Details                                                                                                                  |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Can Wang (Cam)                 | https://www.linkedin.com/in/camwang/                                                                                           |
-| Gordon Leung                   | https://www.linkedin.com/in/gordon-leung-65b28a112/                                                                            |
-| Jiashi Chen (Tony)             | https://www.linkedin.com/in/tonychen0721/                                                                                      |
-| Jincheng Song (Jasper)         | https://www.linkedin.com/in/jasper-song-719727252/                                                                             |
-| Jirathip Kunkanjanathorn (Guy) | https://www.linkedin.com/in/jirathip-kunkanjanathorn/                                                                          |
+| Can Wang (Cam)                 | [Profile](https://www.linkedin.com/in/camwang/)                                                                                           |
+| Gordon Leung                   | [Profile](https://www.linkedin.com/in/gordon-leung-65b28a112/)                                                                            |
+| Jiashi Chen (Tony)             | [Profile](https://www.linkedin.com/in/tonychen0721/)                                                                                      |
+| Jincheng Song (Jasper)         | [Profile](https://www.linkedin.com/in/jasper-song-719727252/)                                                                             |
+| Jirathip Kunkanjanathorn (Guy) | [Profile](https://www.linkedin.com/in/jirathip-kunkanjanathorn/)                                                                          |
 
 # Future Sponsors
 
