@@ -1,4 +1,7 @@
-# DevOps - CI/CD 🚀
+---
+sidebar_position: 3
+--- 
+# DevOps - CI/CD
 
 ## Main Application Dockerfile
 
