@@ -84,6 +84,19 @@ Settle Aid strictly adheres to the ACS Code of Conduct by prioritizing privacy, 
 
 - 1.2.6 Professionalism: Settle Aid promotes professionalism by providing tools and resources that help "Flying Grannies" integrate into Australian society, demonstrating respect for cultural norms and ethical behavior.
 
+# System Components
+- Analysis and Design Report: https://drive.google.com/drive/u/1/folders/1arcBiH8aXb4UXkZcHMHF3gsvGApjIN_4 
+- Design Artefacts: https://drive.google.com/drive/u/1/folders/12U2ci-LVh7MFYuxTqAGCc7TwB0MN2w8y 
+- Build: https://drive.google.com/drive/u/1/folders/1MESszIor3mW6dLv3uAQ8axbA9c4cLYTp 
+- System Architecture and Security: https://drive.google.com/drive/u/1/folders/1FlGdO2h_CC9pXnL91hzOsJKSX1t3RvIW 
+- Data Governance: https://drive.google.com/drive/u/1/folders/172ae08Ama2weGeQcIglKKxn01kROsSxd 
+- Risk Management: https://drive.google.com/drive/u/1/folders/1dYvk0Siv2EiO_g1ghvmKZRfVIegxEVUi 
+- Testing: https://drive.google.com/drive/u/1/folders/11drqq90oPUwboIntG-dbnjOtUJ4KpcxB 
+- Team Information: https://drive.google.com/drive/u/1/folders/1w3Mm5AofPde4ViVbcEUMYReExJuHiw0o 
+
+# Product Video
+- Link to Product Video: https://drive.google.com/drive/u/1/folders/1XPzDcOo-xYSG1YaqUdSItdQcDsL2jQTF
+
 # Team Information
 
 | Name            | Details                                                                                                                  |
