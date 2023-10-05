@@ -66,13 +66,13 @@ const config = {
         },
         items: [
           {
-            to: "/blog", label: "Product", position: "left"
+            to: "/blog", label: "Product Blog", position: "left"
           },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            label: "Support & Maintainance",
+            label: "Developers Documentation",
           },
           {
             href: "https://github.com/topmello",

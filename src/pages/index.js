@@ -43,7 +43,7 @@ function HomepageHeader() {
             className={`button button--secondary button--lg ${styles.button_width}`}
             to="/blog"
           >
-            Product Documentation
+            Product Blog
           </Link>
         </div>
         <div className={styles.buttons}>
@@ -51,7 +51,7 @@ function HomepageHeader() {
             className={`button button--secondary button--lg ${styles.button_width}`}
             to="/docs/intro"
           >
-            Support & Maintainance Documentation
+            Developers Documentation
           </Link>
         </div>
 

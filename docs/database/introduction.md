@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Database Introduction
 
 The database system combines the strength of PostgreSQL with Redis's rapid in-memory processing.
