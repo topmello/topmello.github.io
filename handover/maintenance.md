@@ -655,3 +655,369 @@ For more details, please refer to [HTTP Exceptions](https://topmello.github.io/d
 | `disconnect` | `room`       | `disconnected`              | E.g. "admin disconnected"                                |
 
 # Frontend
+In the realm of frontend development, a performant and responsive user interface is paramount. Why? The frontend serves as the primary interaction point for users and often shapes the entirety of their experience.  
+With React Native at the core of our tech stack, developers can harness the power of a cross-platform solution, ensuring consistent behavior and appearance across Android and iOS platforms.
+
+![frontend](../static/img/showcase2.png)
+
+## Key Features
+
+**Cross-Platform Development**: With React Native, the app is developed once but can run on both Android and iOS. This makes for a cost-efficient development process, which our target audience values.
+
+**Unified UI/UX**: React Native Paper ensures that the app maintains UI consistency across devices, resulting in a cohesive user experience.
+
+**High-Performance API Calls**: Axios simplifies making API requests and handles them efficiently hence improve the user experience.
+
+**Centralized State Management**: Redux offers a structured way to manage the app's global state, ensuring that components receive consistent data, which will be benifitial for collaboration between team members and future extension of the application functionailities.
+
+**Persistent Data Storage**: With Redux Persist, the app's state data can survive app restarts, enhancing user experience.
+
+**Multi-Language Support**: React i18next ensures that the app can be localized in various languages, which is critical for us to provide service to our target audience.
+
+**Geolocation Services**: Expo Location and React Native Maps enable the app to offer map and location-based features. This adaption allows us to do realtime location sharing.
+
+**Real-time Interaction**: Chat and updates in real-time which is built upon WebSocket protocol.
+
+**Advanced Device Integration**: Direct calendar interaction, print capabilities and more.
+
+## Technology Stack
+
+Frontend Tech stack we use:
+
+- [React Native](https://reactnative.dev/) - Fundamental Framework to build native app for Android and iOS in React
+- [React Native Paper](https://reactnativepaper.com/) - UI component and theme library for UI consistency accross devices
+- [React Native Dates](https://web-ridge.github.io/react-native-paper-dates/docs/intro) - Date selector component for React Native Paper
+- [Expo Router](https://docs.expo.dev/routing/introduction/) - Routing between screens
+- [Axios](https://axios-http.com/docs/intro) - API request library
+- [Redux](https://redux.js.org/) - Global state management for React app
+- [Redux Persist](https://github.com/rt2zz/redux-persist) - Data persistance for Redux
+- [React i18next](https://react.i18next.com/) - Internalization for React
+- [Expo Location](https://docs.expo.dev/versions/latest/sdk/location/) - Providing access to Geolocation
+- [React Native Maps](https://www.npmjs.com/package/react-native-maps?activeTab=readme) - Cross-platform map component
+- [Expo Calendar](https://docs.expo.dev/versions/latest/sdk/calendar/) - Provides an API for interacting with the device's system calendars
+- [Expo KeepAwake](https://docs.expo.dev/versions/latest/sdk/keep-awake/) - A React component that prevents the screen from sleeping when rendered.
+- [Expo Localization](https://docs.expo.dev/versions/latest/sdk/localization/) - A library that provides an interface for native user localization information.
+- [Expo Print](https://docs.expo.dev/versions/latest/sdk/print/) - A library that provides printing functionality for Android and iOS (AirPrint).
+- [React Native Share](https://reactnative.dev/docs/share) - Provide access to system share API
+- [Socket.io Client](https://www.npmjs.com/package/socket.io-client) - For realtime messaging
+
+## Global States
+### AppState Documentation
+
+Manage global application states such as theme, language, loading status, and notifications with the `AppState` Redux slice.
+
+#### **State Structure**
+
+The `AppState` has the following structure:
+
+```
+{
+  isLoading: boolean,
+  isFail: {
+    message: string
+  } | null,
+  theme: "light" | "dark" | "system" | undefined,
+  language: "en-AU" | "zh-CN" | "hi-IN" | undefined,
+  privacyChecked: boolean,
+  roomId: string | undefined
+}
+```
+
+#### Usage
+
+To use the `AppState` Redux slice, make sure to add it to your store's reducer.
+
+##### State Selectors
+
+These functions allow you to retrieve specific pieces of state:
+
+- `selectIsLoading`: Returns the `isLoading` state.
+- `selectIsFail`: Returns the `isFail` state.
+- `selectTheme`: Returns the `theme` state.
+- `selectLanguage`: Returns the `language` state.
+- `selectPrivacyChecked`: Returns the `privacyChecked` state.
+- `selectRoomId`: Returns the `roomId` state.
+
+##### Actions
+
+- `loading`: Set the `isLoading` state to true.
+- `loaded`: Set the `isLoading` state to false.
+- `fail`: Set the `isLoading` state to false and update the `isFail` message.
+- `setDarkTheme`, `setLightTheme`, and `setSystemTheme`: Update the `theme` state.
+- `setLanguage`: Set the language state to one of the available languages.
+- `setPrivacyChecked` and `setPrivacyUnchecked`: Set the `privacyChecked` state.
+- `setRoomId`: Update the `roomId` state.
+
+### AuthState Documentation
+
+Manage authentication states and user-specific details with the `AuthState` Redux slice.
+
+#### **State Structure**
+
+The `AuthState` has the following structure:
+
+```
+{
+  id?: number,
+  username?: string,
+  token?: string,
+  tokenExpiresAt?: string,
+  refreshToken?: string,
+  refreshTokenExpiresAt?: string,
+  status: 'idle' | 'login' | 'loginSuccess' | 'loginFail' | 'logout' | 'registering' | 'registerSuccess' | 'registerFail' | 'refreshing' | 'refreshSuccess' | 'refreshFail' | 'logout'
+}
+```
+
+#### **Actions**
+
+##### Thunks
+
+- `loginUser`: An asynchronous action to log in a user. Accepts an object with `username` and `password`.
+- `refreshToken`: An asynchronous action to refresh the user's access token using the refresh token.
+- `registerUser`: An asynchronous action to register a new user. Accepts an object with `username` and `password`.
+
+##### Reducers
+
+- `logoutUser`: Log out the user and reset their authentication data.
+
+#### **Usage**
+
+##### State Selectors
+
+Utilize the following functions to retrieve specific pieces of the authentication state:
+
+- `selectUserId`: Returns the user's ID.
+- `selectUsername`: Returns the user's username.
+- `selectToken`: Returns the user's access token.
+- `selectAuthStatus`: Returns the current status of the authentication process.
+- `selectTokenExpiresAt`: Returns the expiration time of the access token.
+- `selectRefreshToken`: Returns the user's refresh token.
+- `selectRefreshTokenExpiresAt`: Returns the expiration time of the refresh token.
+
+### RouteState Documentation
+
+The `RouteState` Redux slice manages user routing preferences and configurations.
+
+#### **State Structure**
+
+The `RouteState` has the following structure:
+
+```
+{
+  location_type: LocationType[];
+  query: string[];
+  negative_query: string[];
+  longitude: number;
+  latitude: number;
+  distance_threshold: number; // Distance between each location in meters
+  similarity_threshold: number; // Range: 0-1
+  negative_similarity_threshold: number; // Range: 0-1
+  route_type: RouteType;
+}
+```
+
+#### **Actions**
+
+##### Reducers
+
+- `setLocationType`: Set the location types.
+- `setQueryWithLocationType`: Set the location type, query, and negative query. Both the location type and query arrays must be of the same length.
+- `setLonLat`: Set the longitude and latitude for the route.
+- `setDistanceThreshold`: Set the distance threshold for the route.
+- `setSimilarityThreshold`: Set the similarity threshold for the route.
+- `setRouteType`: Set the type of the route (e.g., walking, driving, etc.).
+
+#### **Selectors**
+
+Utilize the following functions to retrieve specific pieces of the routing state:
+
+- `selectLocationType`: Returns the type of locations.
+- `selectQuery`: Returns the query strings.
+- `selectLonLat`: Returns the longitude and latitude.
+- `selectDistanceThres`: Returns the distance threshold.
+- `selectRouteState`: Returns the entire route state.
+
+## Theming
+
+### Accessing theme properties
+
+Use the custom `useAppTheme()` hook to access to the theme variables. This hook extends React Native Paper hook and add custom colors like success and amber.
+```js
+import * as React from 'react';
+import { useAppTheme } from "../../theme/theme";
+
+export default function PaymentScreen() {
+  const theme = useTheme();
+
+  return <View style={{ backgroundColor: theme.colors.purpleContainer }} />;
+}
+``` 
+
+### Accessing Dark mode
+Using the custom `useAppTheme()` hook and use its dark boolean property
+```js
+import * as React from 'react';
+import { useAppTheme } from "../../theme/theme";
+
+export default function PaymentScreen() {
+  const {dark} = useTheme();
+  return <View style={{ fontWeight: dark? '800':'600' }} />;
+}
+```
+
+### Change Theme Colors
+Theme colors for both light and dark mode are configured in `theme\theme.ts` file, you can custom those colors by replacing the values or adding more color attributes.
+
+Be sure to use hex rgb values for these colors.
+
+## Custom Hooks
+
+### `useFetch` Hook
+
+Just as React provides hooks to embed state and other React features into your components, `useFetch` serves as a custom hook that provides an abstraction over the fetching mechanism, tailored to work efficiently within the React component lifecycle.
+
+#### Overview
+
+The `useFetch` hook is designed to interact with your API, handle various kinds of errors, and provide feedback to the user. It seamlessly integrates with your Redux store to maintain application state and utilizes other hooks for notifications, translations, and session management.
+
+#### Usage
+
+Here's a basic way to use the `useFetch` hook:
+
+```jsx
+const [data, fetchData] = useFetch(requestOptions);
+```
+
+#### Parameters
+
+- **requestOptions (`RequestOptions`):** This is the main configuration for your fetch request. It includes all the details needed to make an API call.
+- **deps (`any[]` = []):** Dependencies for the effect. The fetch operation will re-run whenever these dependencies change.
+- **initialData (`T`):** You can provide an initial value for the data. Useful in scenarios where you have default or placeholder data.
+- **shouldFetchImmediately (`boolean` = true):** A boolean indicating if the fetch should run immediately when the component mounts.
+- **notificationMsg (`string`):** A message to display as a notification when the fetch is successful.
+
+#### Returns
+
+The hook returns an array with:
+
+1. The fetched data (`T | null`)
+2. A `fetchData` function to trigger the fetch manually.
+
+#### Deep Dive
+
+##### Session Validity
+
+Before making the fetch, the hook checks the validity of the user session. If the session is invalid, it will dispatch a "Session Invalid" error to your Redux store.
+
+##### Handling Errors
+
+The hook comes with an integrated error-handling mechanism. If the fetch encounters an error, the hook identifies its type and dispatches appropriate actions or notifications. Some of the handled errors include:
+
+- Network Error
+- Unknown Error
+- Invalid Credentials
+- No Location
+- Already Voted
+
+It's designed to give feedback both to your Redux store and the user via notifications.
+
+##### Notifications & Translations
+
+The hook leverages the `useNotification` and `useTranslation` hooks to send user notifications and support internationalization respectively.
+
+### Notification
+
+The `NotificationContext.tsx` module is designed to provide an easy and consistent way to handle notifications in your React application using the react-native-paper library. It establishes a context for notifications, allows for notification messages with different severity levels, and provides the utility to dismiss or take action on a notification.  
+
+`useNotification` custom hook provide a gateway to easy push notification to users. It returns an object containing the `pushNotification` method detailed below.
+
+
+#### `Notification`
+
+This is the structure of a notification:
+
+- `message`: The core message of the notification.
+- `type`: The severity type of the notification. It could be one of the following values:
+  - `success`
+  - `error`
+  - `warning`
+  - `info`
+- `timeout`: The duration for which the notification will be displayed. Default is `4000` ms.
+- `onDismiss`: A callback function that will be called when the notification is dismissed.
+- `action`: An optional action that the user can take on the notification. It consists of:
+  - `label`: The text that is displayed for the action.
+  - `onPress`: A callback function that will be executed when the action is taken.
+
+#### `NotificationContextType`
+
+This defines the shape of the context:
+
+- `notification`: The current active notification.
+- `pushNotification`: A function to show a new notification.
+- `clearNotification`: A function to clear the active notification.
+
+#### `NotificationContext`
+
+This is the main context that consumers will use to access the current notification and the functions to manipulate it. The context's default value is `undefined`.
+
+#### `NotificationProvider`
+
+This component wraps around your application or a part of it and provides the `NotificationContext` to its children.
+
+The `NotificationProvider` maintains the current notification state, handles the logic for automatically dismissing a notification after its timeout, and renders the actual `Snackbar` component from the `react-native-paper` library to display the notification.
+
+### Custom Hook: `useNotification`
+
+The `useNotification` hook is a custom hook designed to provide easy access to the NotificationContext from any component within your React Native application.
+
+```tsx
+import { useContext } from "react";
+import { NotificationContext } from "../store/NotificationContext";
+
+export const useNotification = () => {
+  const context = useContext(NotificationContext);
+  if (!context) {
+    throw new Error("useNotification must be used within a NotificationProvider");
+  }
+  return context;
+};
+```
+By using the `useNotification` hook in your components, you can effortlessly interact with the notification system. It fetches the current notification context, ensuring that it's being accessed within the bounds of the `NotificationProvider`. If not, it throws a useful error to remind developers of the proper usage.
+
+To leverage the capabilities of the notification system in any component:
+
+```tsx
+const { pushNotification } = useNotification();
+
+// in an event handler or somewhere
+pushNotification({
+  message: 'This is a success message!',
+  type: 'success'
+});
+```
+
+## Routing
+
+In the realm of mobile applications developed with Expo, routing plays a pivotal role in sculpting the user experience. Think of routing as the unseen conductor of an orchestra, seamlessly guiding users through different sections of an app, ensuring smooth transitions, efficient data passage, and intuitive backtracking. It's the backbone of navigation, shaping how users interact with the application's features and content. Without effective routing, even the most feature-rich applications can become unnavigable mazes, diminishing user engagement and satisfaction. Thus, for any application to be truly user-centric, a robust and efficient routing mechanism is indispensable.
+
+### Route Graph
+
+Please refer to the Prototype view of project's figma high fidelity design prototype
+
+### Imperative Routing
+
+#### Navigation with `router.push`
+The `router.push` method is your go-to function for programmatically navigating to different screens or routes in your application.
+
+```javascript
+router.push(routeName, params);
+```
+* `routeName` (string): The name of the route/screen you wish to navigate to.
+* `params` (object, optional): Any parameters or data you want to pass to the next route.
+
+#### Navigate Back with `router.back`
+Navigating back to the previous screen is as simple as it sounds. Use the `router.back` function to pop the current screen off the navigation stack and return to the screen you were on before.
+
+```javascript
+router.back();
+```

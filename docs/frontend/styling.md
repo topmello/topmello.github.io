@@ -33,3 +33,8 @@ export default function PaymentScreen() {
   return <View style={{ fontWeight: dark? '800':'600' }} />;
 }
 ```
+
+## Change Theme Colors
+Theme colors for both light and dark mode are configured in `theme\theme.ts` file, you can custom those colors by replacing the values or adding more color attributes.
+
+Be sure to use hex rgb values for these colors.
