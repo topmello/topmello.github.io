@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksettle_aid=self.webpackChunksettle_aid||[]).push([[8422],{9290:e=>{e.exports=JSON.parse('{"label":"ethics","permalink":"/blog/tags/ethics","allTagsPath":"/blog/tags","count":1}')}}]);

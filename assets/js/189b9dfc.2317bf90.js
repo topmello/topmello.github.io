@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksettle_aid=self.webpackChunksettle_aid||[]).push([[5208],{6449:s=>{s.exports=JSON.parse('{"label":"sponsors","permalink":"/blog/tags/sponsors","allTagsPath":"/blog/tags","count":1}')}}]);

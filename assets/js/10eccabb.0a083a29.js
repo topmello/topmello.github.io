@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksettle_aid=self.webpackChunksettle_aid||[]).push([[6297],{8837:e=>{e.exports=JSON.parse('{"label":"team","permalink":"/blog/tags/team","allTagsPath":"/blog/tags","count":1}')}}]);
