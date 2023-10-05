@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Data Validation with Pydantic in FastAPI
+# Data Validation
 
 FastAPI leverages the power of Pydantic for data validation, serialization, and documentation. Pydantic ensures that the data conforms to expected formats and helps in error handling. Below is a brief description of each schema:
 
