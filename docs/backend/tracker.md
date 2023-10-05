@@ -2,6 +2,18 @@
 
 This module allow user to create room in sockerIO and let other user join.
 
+## Endpoint
+
+### **Generate Room PIN**
+
+- **URL**: `/track/generate-pin/`
+- **Method**: `GET`
+- **Description**: 
+  This endpoint is designed to generate a unique 6-digit room PIN that is used to identify tracking rooms. Once generated, this PIN is stored in a Redis database with a default expiration time of 30 minutes. Users need to be logged in to generate a room PIN.
+
+- **Response**: 
+  A JSON object containing the generated room PIN. The structure of the response is represented by the `schemas.TrackRoomOut` model, which primarily consists of the `room_id` attribute, indicating the generated PIN.
+
 ## Events
 
 ### Connect

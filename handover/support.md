@@ -39,6 +39,10 @@ The backend uses the **FastAPI** web framework and employs **PostgreSQL** as the
 
 Integration with external APIs like **MapBox**, **Google Translate**, and **Google Location** enhances functionality. Semantic search capabilities are enhanced by **Huggingface’s Sentence Transformers**, with unit testing via **PyTest**.
 
+![System Diagram](../static/img/system-diagram.png)
+
+\newpage
+
 # Documentation Page
 
 ## Prerequisites
@@ -233,7 +237,7 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
          - REFRESH_TOKEN_EXPIRE_DAYS=7
          - ALGORITHM=HS256
          - ACCESS_TOKEN_EXPIRE_MINUTES=30
-         - MAPBOX_ACCESS_TOKEN={{MAPBOX_ACCESS_TOKEN}} 
+         - MAPBOX_ACCESS_TOKEN=MAPBOX_ACCESS_TOKEN
          # Create an account and get the token from https://account.mapbox.com/
          - DOC_USERNAME=topmello
          - DOC_PASSWORD=da7da0df508738e37f18

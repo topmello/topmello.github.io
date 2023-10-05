@@ -1,44 +1,26 @@
-# Search
+# Search Endpoint
 
+## **Search for a Route Based on User Queries**
+
+- **URL**: `/search/route/`
+- **Method**: `POST`
+- **Body Parameters**: 
+  - `querys`: A JSON object containing the user's desired `location_type`, `latitude`, `longitude`, `distance_threshold`, `similarity_threshold`, and desired `route_type`.
+- **Description**: 
+  This endpoint allows users to search for a route based on specific queries and their current location. The returned route is calculated by matching the user's query against available locations within a specified distance threshold and similarity score. Furthermore, this route is saved as a prompt linked to the user's account.
+  
+- **Response**: 
+  A JSON object representing the found route. This includes the list of locations, their coordinates, the route's path, instructions for the route, and the route's total duration.
+
+## **Enhanced Route Search with Negative Queries**
+
+- **URL**: `/search/v2/route/`
+- **Method**: `POST`
+- **Body Parameters**: 
+  - `querys`: An enhanced JSON object that, in addition to the parameters in the previous endpoint, allows users to provide negative queries to exclude certain results.
+- **Description**: 
+  This enhanced version of the search route allows users to provide additional negative queries, ensuring that certain types of locations are excluded from the resulting route. If a location matches a negative query with a similarity score higher than a specified threshold, it is excluded from the search results. This endpoint is particularly useful for users who want more control over the types of places included in their routes.
+  
+- **Response**: 
+  A JSON object representing the found route, similar to the previous endpoint but with the addition of a route ID. This ID can be used to reference the route in other parts of the system.
 This module provides endpoints related to searching for locations based on user queries. It supports both single and sequence-based search queries.
-
-## Dependencies
-
-- fastapi: The main framework used for building the API.
-- sqlalchemy: Provides ORM functionalities and SQL query building.
-- geoalchemy2: Used for handling geographic objects in the database.
-- numpy: Used for numerical operations.
-- sentence_transformers: Used for encoding sentences into embeddings.
-- schemas, models, oauth2: Internal modules containing data schemas, database models, and OAuth2 utilities respectively.
-
-## Global Variables
-
-- router: The APIRouter instance for the search endpoints, prefixed with /search.
-- model: A SentenceTransformer model used for encoding queries into embeddings.
-- LOCATION_TYPE_MODELS: A dictionary mapping location types to their respective database models.
-- PROMPT_LOCATION_TYPE_MODELS: A dictionary mapping location types to their respective prompt-location database models.
-
-## Utility Functions
-
-- softmax(x): Computes the softmax values for a set of scores.
-
-## Endpoints
-
-### Search by Query Sequence Endpoint (/route/)
-
-- Method: POST
-- Input: querys (containing a list of user queries, location types, distance threshold, similarity threshold, route type, and current location coordinates)
-- Output: A route based on the sequence of search results.
-- Description: Searches for a sequence of locations based on the user's queries. For each query, it finds a location that matches the query's embedding and then creates a route based on the sequence of found locations.
-
-Input Example:
-
-{"query":"Boring","location_type":"landmark","longitude":144.9549,"latitude":-37.81803,"distance_threshold":10000,"similarity_threshold":0.1}
-
-2. Create best route in terms of similarity using input as like of prompt
-
-3. Sample route using probabilities from similarity
-
-Input Example:
-
-{"query":["Chinese","Chinese","Chinese"],"location_type":["landmark","restaurant","restaurant"],"longitude":144.9549,"latitude":-37.81803,"distance_threshold":1000,"similarity_threshold":0}
