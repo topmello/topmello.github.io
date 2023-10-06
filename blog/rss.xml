@@ -13,7 +13,7 @@
             <link>https://topmello.github.io/blog/products-video</link>
             <guid>https://topmello.github.io/blog/products-video</guid>
             <pubDate>Fri, 06 Oct 2023 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<video width="720" controls=""><source src="/assets/medias/product-vid-ba5e26cded938e19a2a2abead735da80.mp4" type="video/mp4">Your browser does not support the video tag.</video>]]></content:encoded>
+            <content:encoded><![CDATA[<video width="720" controls=""><source src="https://raw.githubusercontent.com/topmello/product-video/main/product-vid.mp4" type="video/mp4">Your browser does not support the video tag.</video>]]></content:encoded>
             <category>products</category>
             <category>artifacts</category>
             <category>video</category>
