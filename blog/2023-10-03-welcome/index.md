@@ -32,26 +32,4 @@ How might we mitigate the social isolation experienced by "Flying Grannies" in M
 Grandparents aged between 50 and 65 who make temporary visits to Melbourne for childcare purposes. This demographic demonstrates a higher proficiency in using smartphones compared to individuals aged 65 and above. They also show higher tendency to travel and adapt to different culture.
 
 
-## Importance
 
-Settle Aid is important for both "Flying Grannies" and Australian society as it improves the well-being of these grandparents, strengthens family dynamics, and enriches the multicultural fabric of Australian society.
-
-# System Components
-- Analysis and Design Report: [Link](https://drive.google.com/drive/u/1/folders/1arcBiH8aXb4UXkZcHMHF3gsvGApjIN_4)
-- Design Artefacts: [Link](https://drive.google.com/drive/u/1/folders/12U2ci-LVh7MFYuxTqAGCc7TwB0MN2w8y)
-- Build: [Link](https://drive.google.com/drive/u/1/folders/1MESszIor3mW6dLv3uAQ8axbA9c4cLYTp) 
-- System Architecture and Security: [Link](https://drive.google.com/drive/u/1/folders/1FlGdO2h_CC9pXnL91hzOsJKSX1t3RvIW) 
-- Data Governance: [Link](https://drive.google.com/drive/u/1/folders/172ae08Ama2weGeQcIglKKxn01kROsSxd)
-- Risk Management: [Link](https://drive.google.com/drive/u/1/folders/1dYvk0Siv2EiO_g1ghvmKZRfVIegxEVUi)
-- Testing: [Link](https://drive.google.com/drive/u/1/folders/11drqq90oPUwboIntG-dbnjOtUJ4KpcxB)
-- Team Information: [Link](https://drive.google.com/drive/u/1/folders/1w3Mm5AofPde4ViVbcEUMYReExJuHiw0o)
-
-# Product Video
-- Link to Product Video: [Link](https://drive.google.com/drive/u/1/folders/1XPzDcOo-xYSG1YaqUdSItdQcDsL2jQTF)
-                                                    |
-
-# Future Sponsors
-
-- Melbourne City Council: Settle Aid is an easy mobile application for middle age users to spare time and motivate them to go out and visit landmarks, restaurants and shops. This promotes cultural diversity and social integration, enhancing the city's reputation as a welcoming and inclusive destination. Ultimately, it potentially boosts the local economy by exposing a new customer group.
-- Uber: Trip attractions can be far apart and require a ride. Uber can potentially incorporate Settle Aid for people to share rides and further enhance cultural bridging if they go to the attraction together.
-- Trip Advisor: Trip Advisor is a website that emphasizes on traveller’s experience and satisfaction. With Settle Aid, trip advisor can target more audience groups and broaden customer market and potentially differentiate their product in this new group.

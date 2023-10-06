@@ -1,15 +1,12 @@
 
 ---
-title: >
-  Settle-Aid: Support Documentation
-subtitle: TP01 - Top Mello 
+title: Support Documentation
 author:
   - Can Wang
   - Gordon Leung
   - Jiashi Chen
   - Jincheng Song
   - Jirathip Kunkanjanathorn
-date: 2023-10-05
 ---
 
 \thispagestyle{empty}
@@ -45,7 +42,6 @@ Integration with external APIs like **MapBox**, **Google Translate**, and **Goog
 ![System Diagram](../static/img/system-diagram.png)
 
 \newpage
- 
 # Documentation Page
 
 ## Prerequisites
@@ -584,13 +580,7 @@ In order to connect the frontend to the backend server, environment variables ne
 
 1. Check for URL or IP address of the backend server and the port number. The default port number is 8000. This depends on whether it is development or production environment. Typically, the development environment is localhost:8000 and the production environment is the IP address of the server with port 8000. With HTTPS enabled, the production environment URL is the domain name of the server.
 2. In the frontend, navigate to eas.json and make sure the `EXPO_PUBLIC_API_URL` is the backend server URL. For example, `https://api.settle-aid.tech`.
-## For third party APIs
-
-### Google Places API key
-1. Config EXPO_PUBLIC_GOOGLE_PLACES_API_KEY in root directory .env file as your api key from [Google Cloud](https://developers.google.com/maps/documentation/places/web-service/get-api-key/)
-2. If you want a ready to build api config, you also need to add this api key to
-   * eas.json, under build.\[environment name\].EXPO_GOOGLE_PLACES_API_KEY
-   * app.json, under expo.android.config.googleMaps.apiKey
+3. For other APIs such as Google places and weather APIs, ...
 
 
 # Training and knowledge needed to operate the system
@@ -651,21 +641,7 @@ In order to connect the frontend to the backend server, environment variables ne
 - **System architecture:** A holistic understanding of how each component of the tech stack interacts with each other, the data flow, and error handling mechanisms.
 - **Continuous Integration/Continuous Deployment:** Familiarity with CI/CD processes, especially with tools like GitHub Actions, to automate testing and deployment workflows.
   
-# Change Management
 
-As technology and user needs evolve, our application may undergo adjustments. Here's a structured approach to managing these changes:
-
-1. **Preparation**: Build the platform with adaptability in mind, anticipating potential modifications, whether they're minor adjustments or significant additions.
- 
-2. **Documentation**: Maintain detailed records of all changes. This ensures clarity and consistency for all team members, both current and future.
-
-3. **Testing**: Before rolling out any change, conduct comprehensive testing, including unit and integration tests, to ensure stability. Moreover, if there is change that need to be done on the production level, it is recommended to test the change on the staging environment first.
-
-4. **Communication**: Keep all stakeholders informed about notable changes. This can be done through update logs or direct notifications.
-
-5. **Training**: If a change affects user interaction or developer workflows, provide necessary training or guidance.
-
-6. **Feedback**: After implementing a change, solicit feedback to identify any potential issues or areas for further refinement.
 
 # Resources
 - GitHub Repository:
