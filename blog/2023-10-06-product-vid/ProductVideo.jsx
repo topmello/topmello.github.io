@@ -1,10 +1,9 @@
 
 import React from 'react';
-import ProdVid from '../../static/vid/product-vid.mp4'
 
 const ProductVideo = () => (
   <video width="720" controls>
-    <source src={ProdVid} type="video/mp4" />
+    <source src="https://raw.githubusercontent.com/topmello/product-video/main/product-vid.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 );
