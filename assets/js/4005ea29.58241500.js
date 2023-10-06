@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksettle_aid=self.webpackChunksettle_aid||[]).push([[9144],{9154:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/artifacts","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
