@@ -89,8 +89,15 @@
   \begin{center}
     % Title
     {\fontsize{30pt}{36pt}\selectfont \bfseries \@title \par}
-    \vspace{1cm}
+    \vspace{0.5cm}
     
+    \includegraphics[width=0.15\linewidth]{../static/img/settle-aid-icon.png}
+
+    \vspace{0.5cm}
+
+    {\fontsize{20pt}{24pt}\selectfont \itshape $subtitle$ \par}
+
+    \vspace{0.5cm}
     % Author names
     {\Large \lineskip .5em%
       \begin{tabular}[t]{c}%
@@ -100,15 +107,13 @@
     
     % Date and subtitle
     {\large \@date \par}
-    \vspace{0.5cm}
-    {\fontsize{20pt}{24pt}\selectfont \itshape $subtitle$ \par}
 
     % Space between the text and the image
-    \vspace{1.5cm}
+    \vspace{1cm}
 
     % Add an image (Logo or any other image) below the text
-    \hspace*{-\dimexpr\oddsidemargin+1in\relax}
-    \includegraphics[width=\paperwidth]{../static/img/showcase2.png}
+    \hspace*{-\dimexpr\oddsidemargin+1.05in\relax}
+    \includegraphics[width=1.05\paperwidth]{../static/img/showcase2.png}
 
   \end{center}
   \par
