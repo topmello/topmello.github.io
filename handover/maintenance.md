@@ -10,17 +10,10 @@ author:
   - Jiashi Chen
   - Jincheng Song
   - Jirathip Kunkanjanathorn
-date: 2023-10-05
+date: 08-10-2023
+
 ---
-\thispagestyle{empty}
 
-
-\newpage
-
-\thispagestyle{empty}
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
 
 # Introduction
 

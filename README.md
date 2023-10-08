@@ -57,7 +57,11 @@ Now you should see changes in [topmello.github.io](https://topmello.github.io/)
 
 
 ### Generate PDF
-$ sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
+```bash
+sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
+```
 
-$ pandoc support.md -o support.pdf --pdf-engine=pdflatex --highlight-style=kate
-$ pandoc maintenance.md -o maintenance.pdf --pdf-engine=pdflatex --highlight-style=kate
+
+```bash
+pandoc support.md -o support-custom.pdf --pdf-engine=lualatex --highlight-style=kate --template=template.latex
+````

@@ -9,17 +9,9 @@ author:
   - Jiashi Chen
   - Jincheng Song
   - Jirathip Kunkanjanathorn
+date: 08-10-2023
 ---
 
-\thispagestyle{empty}
-
-
-\newpage
-
-\thispagestyle{empty}
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
 
 # Introduction
 
@@ -88,7 +80,7 @@ GIT_USER=<Your GitHub username> npm run deploy
 
 
 
-# Data Workflows
+# ETL Process
 
 ## Prerequisites
 

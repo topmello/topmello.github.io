@@ -1,0 +1,138 @@
+
+
+\documentclass[12pt]{article}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{calc}
+\tcbuselibrary{breakable}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+\hypersetup{
+    colorlinks=true, 
+    linkcolor=black, 
+    urlcolor=blue, 
+    citecolor=green,
+    filecolor=magenta,
+    pdfborder={0 0 0},
+    urlbordercolor=blue
+}
+
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\uline{#2}}}
+
+\newenvironment{Shaded}{}{}
+
+\newtcolorbox{HighlightingBox}[1][]{
+  colback=white,
+  colframe=gray,
+  rounded corners,
+  boxrule=0.5pt,
+  boxsep=0pt,
+  breakable,
+  #1
+}
+\newenvironment{Highlighting}{\begin{HighlightingBox}}{\end{HighlightingBox}}
+
+
+% Kate highlighting style definitions
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.31,0.63}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.31,0.63}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.31,0.63}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.31,0.63}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.02,0.61}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\bf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.21,0.27,0.53}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.50,0.00,0.50}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.58,0,0.82}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0,0.6,0}{#1}}
+
+
+\title{$title$}
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\date{$date$}
+
+\makeatletter
+
+
+\def\@maketitle{%
+  \newpage
+  \begin{center}
+    % Title
+    {\fontsize{30pt}{36pt}\selectfont \bfseries \@title \par}
+    \vspace{1cm}
+    
+    % Author names
+    {\Large \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}
+    \vspace{1cm}
+    
+    % Date and subtitle
+    {\large \@date \par}
+    \vspace{0.5cm}
+    {\fontsize{20pt}{24pt}\selectfont \itshape $subtitle$ \par}
+
+    % Space between the text and the image
+    \vspace{1.5cm}
+
+    % Add an image (Logo or any other image) below the text
+    \hspace*{-\dimexpr\oddsidemargin+1in\relax}
+    \includegraphics[width=\paperwidth]{../static/img/showcase2.png}
+
+  \end{center}
+  \par
+  \newpage
+}
+
+
+
+\setcounter{secnumdepth}{4}
+\makeatother
+
+\begin{document}
+\newgeometry{bottom=0cm}
+\thispagestyle{empty}
+\maketitle
+\thispagestyle{empty}
+\newpage
+\restoregeometry
+\thispagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\pagenumbering{arabic}
+$body$
+
+\end{document}
