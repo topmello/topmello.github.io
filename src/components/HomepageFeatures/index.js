@@ -1,4 +1,5 @@
 import React from "react";
+import QRCode from "react-qr-code";
 import styles from "./styles.module.css";
 
 
@@ -7,15 +8,15 @@ export default function HomepageFeatures() {
     <section className={styles.features}>
       <div className={styles.buildContainer}>
         <p>Iteration 1 APK Build</p>
-        <img src="/img/qr_it_1.svg" style={{ width: '80%' }} />
+        <QRCode value="https://github.com/topmello/settle-aid-assets/raw/main/settle-aid-iteration-1.apk" style={{ width: '80%' }} />
       </div>
       <div className={styles.buildContainer}>
         <p>Iteration 2 APK Build</p>
-        <img src="/img/qr_it_2.png" style={{ width: '80%' }} />
+        <QRCode value="https://github.com/topmello/settle-aid-assets/raw/main/settle-aid-iteration-2.apk" style={{ width: '80%' }} />
       </div>
       <div className={styles.buildContainer}>
         <p>Iteration 3 APK Build</p>
-        <img src="/img/settle-aid-icon.png" style={{ width: '80%' }} />
+        <QRCode value="https://github.com/topmello/settle-aid-assets/raw/main/settle-aid-iteration-3.apk" style={{ width: '80%' }} />
       </div>
     </section>
   );
