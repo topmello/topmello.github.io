@@ -1,6 +1,7 @@
 
 import React from 'react';
 import QRCode from "react-qr-code";
+import Link from "@docusaurus/Link";
 
 function DownloadPage() {
   // Styles
@@ -23,6 +24,9 @@ function DownloadPage() {
   };
 
   const contentStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     fontSize: '1.1rem',
     lineHeight: '1.6',
     textAlign: 'center',
@@ -35,11 +39,10 @@ function DownloadPage() {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '20px',
     width: '100%',
     backgroundSize: 'cover',
     borderRadius: '10px',
-    marginTop: '20px'
+    maxWidth: '800px'
   };
 
   const qrStyle = {
@@ -51,6 +54,14 @@ function DownloadPage() {
     marginBottom: '20px'
   };
 
+
+  const buttons = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '300px'
+  }
+
   // Component
   return (
     <div style={containerStyle}>
@@ -59,17 +70,34 @@ function DownloadPage() {
       <div style={contentStyle}>
         <p>
           🌟 Your Ultimate Travel Companion 🌟<br /><br />
-          Settle Aid is the essential travel companion. It counters loneliness and offers joy in a new city. Tailored experiences and cultural tips help them adapt seamlessly. With an intuitive map for easy navigation, they can save and share routes. And with real-time tracking, safety is ensured. Unlike other apps, we offer a holistic solution blending comfort, education, and security. Because grandparents deserve a vibrant life in every new city.
+          Settle Aid is the ultimate travel companion for grandparents aged 50-65 visiting Melbourne to care for their grandchildren. We understand the sacrifices they make for their families and the potential loneliness of being in a new city. Settle Aid offers a tailored travel experience, including educational tips, user-friendly navigation, experience sharing, and real-time safety tracking, all in one package, ensuring they enjoy their time in an unfamiliar city.
           <br /><br />
           🔍 Navigate, explore, and embrace Melbourne with confidence and joy!
         </p>
+        <h3>Please download Expo Go to access our aplication</h3>
+        <div style={buttons}>
+          <Link
+            className={`button button--secondary button--lg button--block`}
+            to="https://expo.io/client"
+          >
+            Expo Go
+          </Link>
+        </div>
+
+
       </div>
       <div style={qrContainerStyle}>
-        <a href="https://github.com/topmello/settle-aid-assets/releases/download/v0.3.0/settle-aid-iteration-3.apk" style={{ textDecoration: 'none' }}>
-          <h2 style={titleStyle}>Download Now</h2>
-        </a>
+        <div style={buttons}>
+          <Link
+            className={`button button--secondary button--lg button--block`}
+            to="exp://34.129.1.154:8081"
+          >
+            Start Planning
+          </Link>
+        </div>
+
         <div style={qrStyle}>
-          <QRCode value="https://github.com/topmello/settle-aid-assets/releases/download/v0.3.0/settle-aid-iteration-3.apk" style={{ width: '100%' }} />
+          <QRCode value="exp://34.129.1.154:8081" style={{ width: '100%' }} />
         </div>
       </div>
     </div>
