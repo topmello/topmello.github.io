@@ -58,16 +58,18 @@ function DownloadPage() {
       <h1 style={titleStyle}>Settle Aid</h1>
       <div style={contentStyle}>
         <p>
-          🌟 Discover 🌟<br /><br />
+          🌟 Your Ultimate Travel Companion 🌟<br /><br />
           Settle Aid is the essential travel companion. It counters loneliness and offers joy in a new city. Tailored experiences and cultural tips help them adapt seamlessly. With an intuitive map for easy navigation, they can save and share routes. And with real-time tracking, safety is ensured. Unlike other apps, we offer a holistic solution blending comfort, education, and security. Because grandparents deserve a vibrant life in every new city.
           <br /><br />
           🔍 Navigate, explore, and embrace Melbourne with confidence and joy!
         </p>
       </div>
       <div style={qrContainerStyle}>
-        <h2 style={titleStyle}>Download Now</h2>
+        <a href="https://github.com/topmello/settle-aid-assets/releases/download/v0.3.0/settle-aid-iteration-3.apk" style={{ textDecoration: 'none' }}>
+          <h2 style={titleStyle}>Download Now</h2>
+        </a>
         <div style={qrStyle}>
-          <QRCode value="https://github.com/topmello/settle-aid-assets/raw/main/settle-aid-iteration-3.apk" style={{ width: '100%' }} />
+          <QRCode value="https://github.com/topmello/settle-aid-assets/releases/download/v0.3.0/settle-aid-iteration-3.apk" style={{ width: '100%' }} />
         </div>
       </div>
     </div>

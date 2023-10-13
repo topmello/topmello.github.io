@@ -86,6 +86,18 @@ Each endpoint receives data which is validated using Pydantic models.
 **Score Calculation:**
 Each challenge type has a unique calculator function. Calculates progress based on the provided data and challenge grade. Ensures progress does not exceed 1.0. Updates the user's score in Redis upon completion of the challenge.
 
+## OpenAI's CLIP Integration for Enhanced Image-Text Alignment:
+
+Integrating OpenAI's CLIP model enhances the bridge between textual prompts and visual content. This allow the application to provide more relevant images related to user queries, improving the user experience.
+
+
+- Dynamic Image Processing: Images are categorized into groups like landmarks, restaurants, groceries, and pharmacies. When a textual prompt is entered, the system scans relevant image directories, ensuring specificity in results.
+
+- Intelligent Image Retrieval: Upon receiving a text input, the most fitting image in the database is identified and matched, optimizing search relevance.
+
+- Optimized Routing with Visuals: When a route is requested, it's paired with associated images by correlating user queries with specific location categories, thus providing a comprehensive visual representation.
+
+
 ## Conclusion
 
 In conclusion, the third iteration introduced a global feed and a challenge system to the application. These features facilitate social and exploratory dimensions, and the leaderboard system adds a competitive element, potentially increasing user engagement. Detailed data collection and application contribute to the functionality and future enhancement possibilities of the application. Efficient database design and a focus on data quality and integrity ensure the reliable operation of these new features, promoting a consistent and user-friendly experience.
