@@ -90,14 +90,14 @@ function DownloadPage() {
         <div style={buttons}>
           <Link
             className={`button button--secondary button--lg button--block`}
-            to="exp://34.129.1.154:8081"
+            to="exp://34.129.60.35:8081"
           >
             Start Planning
           </Link>
         </div>
 
         <div style={qrStyle}>
-          <QRCode value="exp://34.129.1.154:8081" style={{ width: '100%' }} />
+          <QRCode value="exp://34.129.60.35:8081" style={{ width: '100%' }} />
         </div>
       </div>
     </div>
