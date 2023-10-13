@@ -40,10 +40,10 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className={`button button--secondary button--lg ${styles.button_width}`}
+            className={`button button--primary button--lg ${styles.button_width}`}
             to="/DownloadPage"
           >
-            Start Planning
+            Try Our App
           </Link>
         </div>
 

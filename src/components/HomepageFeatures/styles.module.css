@@ -1,6 +1,7 @@
 .features {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   padding: 2rem 0;
   width: 100%;
 }
@@ -10,8 +11,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 240px;
+  min-width: 240px;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .featureSvg {
