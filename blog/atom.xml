@@ -60,19 +60,6 @@
         <category label="ethics" term="ethics"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Future Sponsors]]></title>
-        <id>https://topmello.github.io/blog/sponsors</id>
-        <link href="https://topmello.github.io/blog/sponsors"/>
-        <updated>2023-10-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[- Melbourne City Council: Settle Aid is an easy mobile application for middle age users to spare time and motivate them to go out and visit landmarks, restaurants and shops. This promotes cultural diversity and social integration, enhancing the city's reputation as a welcoming and inclusive destination. Ultimately, it potentially boosts the local economy by exposing a new customer group.]]></summary>
-        <content type="html"><![CDATA[<ul><li>Melbourne City Council: Settle Aid is an easy mobile application for middle age users to spare time and motivate them to go out and visit landmarks, restaurants and shops. This promotes cultural diversity and social integration, enhancing the city's reputation as a welcoming and inclusive destination. Ultimately, it potentially boosts the local economy by exposing a new customer group.</li><li>Uber: Trip attractions can be far apart and require a ride. Uber can potentially incorporate Settle Aid for people to share rides and further enhance cultural bridging if they go to the attraction together.</li><li>Trip Advisor: Trip Advisor is a website that emphasizes on traveller’s experience and satisfaction. With Settle Aid, trip advisor can target more audience groups and broaden customer market and potentially differentiate their product in this new group.</li></ul>]]></content>
-        <author>
-            <name>Top Mello</name>
-        </author>
-        <category label="products" term="products"/>
-        <category label="sponsors" term="sponsors"/>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Top Mello Team]]></title>
         <id>https://topmello.github.io/blog/team</id>
         <link href="https://topmello.github.io/blog/team"/>
@@ -84,6 +71,19 @@
         </author>
         <category label="products" term="products"/>
         <category label="team" term="team"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Future Sponsors]]></title>
+        <id>https://topmello.github.io/blog/sponsors</id>
+        <link href="https://topmello.github.io/blog/sponsors"/>
+        <updated>2023-10-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[- Melbourne City Council: Settle Aid is an easy mobile application for middle age users to spare time and motivate them to go out and visit landmarks, restaurants and shops. This promotes cultural diversity and social integration, enhancing the city's reputation as a welcoming and inclusive destination. Ultimately, it potentially boosts the local economy by exposing a new customer group.]]></summary>
+        <content type="html"><![CDATA[<ul><li>Melbourne City Council: Settle Aid is an easy mobile application for middle age users to spare time and motivate them to go out and visit landmarks, restaurants and shops. This promotes cultural diversity and social integration, enhancing the city's reputation as a welcoming and inclusive destination. Ultimately, it potentially boosts the local economy by exposing a new customer group.</li><li>Uber: Trip attractions can be far apart and require a ride. Uber can potentially incorporate Settle Aid for people to share rides and further enhance cultural bridging if they go to the attraction together.</li><li>Trip Advisor: Trip Advisor is a website that emphasizes on traveller’s experience and satisfaction. With Settle Aid, trip advisor can target more audience groups and broaden customer market and potentially differentiate their product in this new group.</li></ul>]]></content>
+        <author>
+            <name>Top Mello</name>
+        </author>
+        <category label="products" term="products"/>
+        <category label="sponsors" term="sponsors"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
