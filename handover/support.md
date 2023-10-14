@@ -19,7 +19,7 @@ This support documentation offers a systematic guide for understanding the platf
 
 - **Documentation Page**: Outlines prerequisites, installation, local development, deployment, and details on communication between frontend and backend.
   
-- **Data Workflows**: Focuses on the platform's data lifecycle, from collection to ingestion.
+- **ETL**: Focuses on the platform's data lifecycle, from collection to ingestion.
   
 - **Backend**: Explores system operations, from running and testing to deployment and developer actions.
   
@@ -90,6 +90,12 @@ GIT_USER=<Your GitHub username> npm run deploy
   git clone https://github.com/topmello/settle-aid-data-wrangling.git
 
 - Or downloading and extracting the ZIP file of the repository.
+- Install the libraries using
+```bash
+pip install -r requirements.txt
+```
+
+
 
 ## Data Collection
 
@@ -103,13 +109,17 @@ In order to collect the open data, the following datasets are accessed from the 
 
 ## Data Processing
 
-After the data is collected, the data should be store in the ./data folder in the project directory. Then, the data processing can be done by running each scipt related to the location type including restaurant, landmark, grocery, and pharmacy.
+After the data is collected, the data should be store in the ./data/input folder in the project directory. Then, the data processing can be done by
+
+- Open `main.ipynb` in Jupyter Notebook
+- Run the notebook cell by cell
+- The processed data will be stored in the ./data/output folder in the project directory
 
 Noted that this step will take a long time to finish and it can be skipped to run backend server directly if the data is not updated and already processed.
 
 ## Data Ingestion
 
-The processed data is stored in the ./data folder in the project directory as JSON file. The data is then ingested into the database by copying to JSON file to backend repository and running the ingestion script.
+The processed data is stored in the ./data/output folder in the project directory as JSON file. The data is then ingested into the database by copying to all the JSON files from ./data/output of ETL repository to backend repository in ./data directory and running the ingestion script.
 
 # Backend
 
@@ -118,13 +128,32 @@ The processed data is stored in the ./data folder in the project directory as JS
 1. Clone the repository or from the zip file
 2. Install Docker with Docker Compose
 3. Run `docker-compose up -d` in the root directory (Compose V2 do not have - between docker-compose)
-4. SSH into the backend container with `docker exec -it backend bash`
-5. Migrate the database with `alembic upgrade head` inside the container (For the first time or when there's a change in the database schema)
-6. Insert the data with `python -m scripts.insert_data` inside the container (For the first time or when there's a change in the dataset)
+```bash
+docker-compose up -d
+```
+
+4. SSH into the backend container with 
+```bash
+docker exec -it backend bash
+```
+
+5. Migrate the database inside the container (For the first time or when there's a change in the database schema)
+```bash
+alembic upgrade head
+```
+
+6. Insert the data inside the container (For the first time or when there's a change in the dataset)
+```bash
+python -m scripts.insert_data
+```
 
 ## How to shutdown the system
 
 1. Run `docker-compose down` in the root directory
+
+```bash
+docker-compose down
+```
 
 ## How to test the system
 
@@ -186,163 +215,35 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
 
 ### Deploying on GCP
 
-1. SSH into GCP Instance: `gcloud compute ssh <instance-name> --zone <zone>`
+1. SSH into GCP Instance:
+```bash
+gcloud compute ssh <instance-name> --zone <zone>
+```
+
 2. Change directory: `cd ..` (Optional)
-3. Make sure `docker-compose.yaml` and `<domain-name>` is exist in the directory. And, the domain DNS has been point to the backend virtual machine external IP address. For the first time configuration files for production are needed to be created as below. Noted that the keys and domain name needed to be changed according to the new production environment.
-   
-   - docker-compose.yaml
-   ```yaml
-   version: '3'
-   services:
-     db:
-       container_name: settle-aid-db
-       image: jirathipk/postgres-vec-geo:latest
-       restart: always
-       environment:
-         - POSTGRES_DB=database
-         - POSTGRES_USER=db_user
-         - POSTGRES_PASSWORD=password1234
-       volumes:
-         - database_volume:/var/lib/postgresql/data/
-         - dbbackups_volume:/backups
-     redis:
-       container_name: settle-aid-redis
-       image: redis:latest
-       restart: always
-       command: redis-server --requirepass topmelloredis --loglevel verbose
-       volumes:
-         - redis_volume:/data
-   
-     backend:
-       image: jirathipk/settle-aid-backend:latest
-       container_name: settle-aid-backend
-       user: myuser
-       environment:
-         - DATABASE_HOSTNAME=db
-         - DATABASE_NAME=database
-         - DATABASE_PORT=5432
-         - DATABASE_PASSWORD=password1234
-         - DATABASE_USERNAME=db_user
-         - SECRET_KEY=SECRET_KEY 
-         # Generate a new key with openssl rand -hex 32
-         - REFRESH_SECRET_KEY=REFRESH_SECRET_KEY 
-         # Generate a new key with openssl rand -hex 32
-         - REFRESH_TOKEN_EXPIRE_DAYS=7
-         - ALGORITHM=HS256
-         - ACCESS_TOKEN_EXPIRE_MINUTES=30
-         - MAPBOX_ACCESS_TOKEN=MAPBOX_ACCESS_TOKEN
-         # Create an account and get the token from https://account.mapbox.com/
-         - DOC_USERNAME=topmello
-         - DOC_PASSWORD=da7da0df508738e37f18
-         - REDIS_HOSTNAME=redis
-         - REDIS_PORT=6379
-         - REDIS_PASSWORD=topmelloredis
-         - USER_CACHE_EXPIRY=3600
-         - TRANSFORMERS_CACHE=/usr/src/app/transformers_cache
-         - PYTEST_ADDOPTS="-o cache_dir=/usr/src/app/.pytest_cache"
-         - VIRTUAL_HOST=staging.settle-aid.tech
-         - VIRTUAL_PORT=8000
-         - LETSENCRYPT_HOST=staging.settle-aid.tech
-         - LETSENCRYPT_EMAIL=jirathip.ku@gmail.com
-       depends_on:
-         - db
-         - redis
-   
-     pgbackups:
-       container_name: settle-aid-db-backup
-       image: prodrigestivill/postgres-backup-local
-       restart: always
-       user: postgres:postgres
-       volumes:
-         - dbbackups_volume:/backups
-       links:
-         - db
-       depends_on:
-         - db
-       environment:
-         - POSTGRES_HOST=db
-         - POSTGRES_DB=database
-         - POSTGRES_USER=db_user
-     nginx-proxy:
-       image: nginxproxy/nginx-proxy
-       container_name: nginx-proxy
-       ports:
-         - "80:80"
-         - "443:443"
-       volumes:
-         - /var/run/docker.sock:/tmp/docker.sock:ro
-         - certs:/etc/nginx/certs
-         - vhost:/etc/nginx/vhost.d
-         - html:/usr/share/nginx/html
-         - ./api.settle-aid.tech:/etc/nginx/vhost.d/api.settle-aid.tech # production domain name
 
-     acme-companion:
-       image: nginxproxy/acme-companion
-       container_name: nginx-proxy-acme
-       volumes:
-         - /var/run/docker.sock:/var/run/docker.sock:ro
-         - certs:/etc/nginx/certs
-         - html:/usr/share/nginx/html
-         - vhost:/etc/nginx/vhost.d
-         - acme:/etc/acme.sh
-       environment:
-         - NGINX_PROXY_CONTAINER=nginx-proxy
-       depends_on:
-         - nginx-proxy
+3. Make sure `docker-compose.yaml` and `nginx.conf` is exist in the directory. And, the domain DNS has been point to the backend virtual machine external IP address. For the first time configuration files for production are needed to be created as below. Noted that the keys and domain name needed to be changed according to the new production environment. Note: The configuration files can be found in the repository. (`docker-compose.prod.yaml` and `nginx-conf-sse-sio`)
 
-   volumes:
-     certs:
-     vhost:
-     html:
-     acme:
-     database_volume:
-     redis_volume:
-     models_volume:
-     dbbackups_volume:
-   ```
-   - domain name for NGINX proxy
-   ```
-   location /logs/stream/ {
-       proxy_pass http://localhost:8000;
-       proxy_set_header Host $host;
-       proxy_set_header X-Real-IP $remote_addr;
-       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-       # SSE specific configurations
-       proxy_http_version 1.1;
-       proxy_set_header Connection '';
-       proxy_buffering off;
-       proxy_cache off;
-       send_timeout 600s;
-   }
+4. Pull the Latest Docker Compose Configuration: 
+```bash
+sudo docker-compose pull
+```
 
-   location /track-sio/sio/ {
-       proxy_pass http://localhost:8000;
-       proxy_set_header Host $host;
-       proxy_set_header X-Real-IP $remote_addr;
-       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+5. Start the Containers: 
+```bash
+sudo docker-compose -p settle-aid up -d
+```
 
-       # WebSocket specific configurations
-       proxy_http_version 1.1;
-       proxy_set_header Upgrade $http_upgrade;
-       proxy_set_header Connection "upgrade";
-
-       # Disable buffering when the nginx proxy gets very busy (protects upstream service)
-       proxy_buffering off;
-       }
-
-   ```
-   
-4. Pull the Latest Docker Compose Configuration: `sudo docker-compose pull`
-5. Start the Containers: `sudo docker-compose -p settle-aid up -d`
   - The -p flag is to set a project name, which can be useful for running multiple environments on the same host
   - The -d flag is to run the containers in the background
-6. For the first time, run the migration script: 
-   ```bash
-   sudo docker exec -it backend alembic upgrade head
 
-   sudo docker exec -it backend python -m scripts.insert_data
-   ```
+6. For the first time, run the migration script: 
+```bash
+sudo docker exec -it backend alembic upgrade head
+
+sudo docker exec -it backend python -m scripts.insert_data
+```
 
 ### Actions for Developers:
 
@@ -355,9 +256,10 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
 1. While inside the backend container, navigate to the directory where your models are defined.
 2. Create or modify an ORM model to define the structure of your new table.
 3. Generate a new migration script using the command: 
-   ```bash
-   alembic revision -m "Add new_table_name table"
-   ```
+```bash
+alembic revision -m "Add new_table_name table"
+```
+
 4. Edit the generated migration script in the `versions` directory, ensuring the `upgrade()` method contains logic to create your new table and the `downgrade()` method contains logic to remove it.
 5. Apply the migration using 
    ```bash
@@ -380,54 +282,9 @@ https://github.com/prodrigestivill/docker-postgres-backup-local
 
 To restore a backup to a fresh database:
 
-```bash
-docker exec -it db psql \
---username=db_user \
---dbname=postgres -c "DROP DATABASE database;"
-```
+Please refer to: [Backups](https://topmello.github.io/docs/database/backup)
 
-```bash
-docker exec -it db psql \
---username=db_user \
---dbname=postgres -c "CREATE DATABASE database;"
-```
 
-```bash
-docker exec -it db psql \
---username=db_user \
---dbname=database -c "CREATE EXTENSION IF NOT EXISTS postgis;"
-```
-
-```bash
-docker exec -it db psql \
---username=db_user \
---dbname=database -c "CREATE EXTENSION IF NOT EXISTS vector;"
-```
-
-```bash
-sudo docker exec \
--it db /bin/sh \
--c "zcat /backups/last/database-latest.sql.gz | \
-psql --username=db_user --dbname=database -W"
-```
-
-#### Change permission for backups
-
-If necessary, adjust the permissions for the backup files.
-
-```bash
-docker exec -u root -it db-backup chown -R 999:999 /backups
-```
-
-#### Check backup volumes content
-
-To inspect the contents of the backup volume:
-
-```bash
-sudo docker run \
---rm -it \
--v settle-aid_dbbackups_volume:/volume_content alpine:latest /bin/sh
-```
 
 
 ## How to launch new service in the backend
@@ -435,9 +292,9 @@ sudo docker run \
 
 1. Pull the Desired Image: 
    If you haven't already, ensure that the desired service's Docker image is available on your system. If it's on a public registry like Docker Hub, you can pull it using:
-   ```bash
-   docker pull <image-name>:<tag>
-   ```
+```bash
+docker pull <image-name>:<tag>
+```
 
    Replace `<image-name>:<tag>` with the name and the desired tag/version of the image.
 
@@ -445,46 +302,24 @@ sudo docker run \
    Navigate to the directory containing your `docker-compose.yml` file and open it for editing.
 
 3. Add the New Service:
-   In the `docker-compose.yml` file, add a new service definition for the image you've just pulled. For instance:
-
-   ```yaml
-   services:
-     ... 
-     new-service-name:
-       image: <image-name>:<tag>
-       ports:
-         - "<external-port>:<internal-port>"
-       environment:
-         - "ENV_VAR_NAME=value"
-       volumes:
-         - "/path/on/host:/path/in/container"
-       depends_on:
-         - "another-service-name"
-   ```
-
-   Replace placeholders as appropriate:
-   - `<image-name>:<tag>` with the image's name and tag.
-   - `<external-port>:<internal-port>` to map ports from the container to the host.
-   - Adjust `environment` to set any environment variables the service needs.
-   - The `volumes` section can be used to mount directories from the host into the container.
-   - `depends_on` ensures that the new service starts only after another specified service has started.
+   In the `docker-compose.yml` file, add a new service definition for the image pulled.
 
 4. Launch the New Service:
    With the service added to the Docker Compose file, navigate to the directory containing the file and run:
-   ```bash
-   docker-compose up -d new-service-name
-   ```
+```bash
+docker-compose up -d new-service-name
+```
 
    This command will start only the new service and any services it depends on. If you want to start all services defined in the Compose file, simply use:
-   ```bash
-   docker-compose up -d
-   ```
+```bash
+docker-compose up -d
+```
 
 5. Monitor the Service:
    You can check the logs of the newly launched service with:
-   ```bash
-   docker-compose logs -f new-service-name
-   ```
+```bash
+docker-compose logs -f new-service-name
+```
 
 By following these steps, you'll successfully launch a new service in the backend using Docker Compose. Remember to consult the documentation or README of the specific service image for any particular configurations or environment settings.
 
@@ -496,9 +331,9 @@ By following these steps, you'll successfully launch a new service in the backen
 1. Logging Pages: The developed logging pages are essential tools for observing the system's behavior. Regularly review the `/logs/` endpoint, as it maintains a record of all requests made to the backend. By analysing these logs, system performance, identify patterns, detect anomalies, and troubleshoot issues can be guaged when they arise.
 
 2. Docker Logs: Docker provides built-in logging mechanisms for its containers. You can access the logs of a specific container using the following command:
-   ```bash
-   docker-compose logs -f service-name
-   ```
+```bash
+docker-compose logs -f service-name
+```
 
 
 
@@ -511,9 +346,10 @@ By following these steps, you'll successfully launch a new service in the backen
 2. Check Logs: Review application logs for errors or warnings.
 3. Check External Services: Make sure dependencies, like databases or third-party APIs, are operational.
 4. Restart Services: A simple service restart might solve temporary glitches.
-   ```bash
-   sudo docker-compose up -d -p settle-aid
-   ```
+```bash
+sudo docker-compose up -d -p settle-aid
+```
+
 5. Review Resources: Ensure the system hasn't run out of essential resources like CPU, RAM, or storage.
 
 
@@ -525,13 +361,13 @@ By following these steps, you'll successfully launch a new service in the backen
 2. Clone or extract the frontend code to local folder
 3. Run commandline tool or open code folder in code editor
 4. Run the following command in folder that contains all code files
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 5. Now you can run the following command to start the development server
-   ```bash
-   npm run start
-   ```
+```bash
+npm run start
+```
 6. After development server finish starting process, you can scan the QR code in the commandline using Expo Go application(Android) or using system camera(iOS)
 
 ## How to shutdown the system
@@ -566,6 +402,37 @@ Run the following command to build the app in expo server.
 ```bash
 eas build -p android --profile preview
 ```
+
+## Frontend Demo Server
+
+### Build Image by trigger Github Action
+
+- Switch to deploy branch by `git switch deploy`
+- Merge from main branch by `git merge main`
+- Push to `deploy` using `git push` branch will trigger `build_push_image` workflow
+- The image will be pushed to [GHCR](https://github.com/topmello/settle-aid-frontend/pkgs/container/settle-aid-frontend)
+
+
+### Pull Image in GCP and Run Container
+
+- SSH to GCP instance
+
+```bash
+gcloud compute ssh <instance-name>
+```
+
+- `cd ..` to go to home directory
+
+- Pull the latest image from GHCR
+```bash
+sudo docker-compose -f docker-compose-frontend.yaml pull
+```
+
+- Start the container
+```bash
+sudo docker-compose -f docker-compose-frontend.yaml -p settle-aid up -d
+```
+
 
 
 
@@ -633,7 +500,7 @@ In order to connect the frontend to the backend server, environment variables ne
 ## Natural Language Processing and AI
 - **Huggingface's Sentence Transformers:** Grasp on semantic search, sentence embeddings, and the utilization of transformers for better user input understanding.
   
-## Containerization and Deployment
+## Containerisation and Deployment
 - **Docker:** Proficiency in containerizing applications using Docker, understanding of Docker Compose for multi-container applications, and familiarity with container orchestration.
 - **GCP (Google Cloud Platform):** Knowledge of deploying and managing Docker images on GCP, understanding GCP's infrastructure, and its security best practices.
 
@@ -657,15 +524,17 @@ As technology and user needs evolve, our application may undergo adjustments. He
 6. **Feedback**: After implementing a change, solicit feedback to identify any potential issues or areas for further refinement.
 
 # Resources
+
+## Internal
+- Documentation: 
+  - [Documentation page](https://topmello.github.io)
+  - [Backend API Documentation](https://api.settle-aid.tech)
 - GitHub Repository:
   - [Frontend](https://github.com/topmello/settle-aid-frontend.git)
   - [Backend](https://github.com/topmello/settle-aid-backend.git)
   - [Documentation page](https://github.com/topmello/topmello.github.io.git)
   - [Data Wrangling](https://github.com/topmello/settle-aid-data-wrangling.git)
 
-## Internal
-- [Project Documentation Page](https://topmello.github.io)
-- [Backend API Documentation](https://api.settle-aid.tech)
 - [Backend Logging](https://api.settle-aid.tech/logs)
 - [Backend UI for testing](https://api.settle-aid.tech/ui)
 
