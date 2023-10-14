@@ -25,13 +25,18 @@ This Dockerfile is tailored for the PostgreSQL setup with vector extensions:
 - PostGIS Extension: PostGIS, a spatial database extension for PostgreSQL, is installed to enable geographical functionalities.
 - Default Command: Specifies the default command to start PostgreSQL.
 
+The custom image registries are as follows:
+
+- [settle-aid-backend](https://github.com/topmello/settle-aid-backend/pkgs/container/settle-aid-backend)
+- [postgres-vec-geo](https://github.com/topmello/settle-aid-backend/pkgs/container/postgres-vec-geo)
+
 ## Docker Compose Overview
 
 ### Services:
 
 1. db (PostgreSQL)
 
-- Docker Image: jirathipk/postgres-vec-geo:latest
+- Docker Image: gchr.io/topmello/postgres-vec-geo:latest
 - Purpose: Used for our main application database.
 - Credentials:
 - Database: database
@@ -48,7 +53,7 @@ This Dockerfile is tailored for the PostgreSQL setup with vector extensions:
 
 3. backend
 
-- Docker Image: jirathipk/settle-aid-backend:latest
+- Docker Image: gchr.io/topmello/settle-aid-backend:latest
 - Purpose: Main application.
 - Port Mapping: Host's 8000 is mapped to container's 8000.
 - Dependencies: Relies on db and redis services to be running.
@@ -87,26 +92,40 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
 6. Under the Firewall settings, make sure to allow HTTP and HTTPS traffic if your application needs to be accessed over the internet.
 7. Once filled out, click "Create" to instantiate your VM.
 8. SSH into the instance and install Docker and Docker Compose. The instructions can be found here: https://docs.docker.com/engine/install/ubuntu/
-9. Set up NGINX for reverse proxy in the instance.
-  9.1 Install NGINX: `sudo apt install nginx`
-  9.2 Create a new file in /etc/nginx/sites-available/ and name it settle-aid
-  9.3 Copy the following configuration into the file:
-  ```to be filled in later```
-  9.4 Create a symbolic link to the file in /etc/nginx/sites-enabled/:
-  ```sudo ln -s /etc/nginx/sites-available/settle-aid /etc/nginx/sites-enabled/```
-  9.5 Test the configuration and restart NGINX:
-  ```sudo nginx -t```
-  ```sudo systemctl restart nginx```
+9. Install VIM using `sudo apt install vim`. (Optional)
 
 
 ## Deploying on GCP
 
-- SSH into GCP Instance: `gcloud compute ssh <instance-name> --zone <zone>`
-- Change directory: `cd ..`
-- Pull the Latest Docker Compose Configuration: `sudo docker-compose pull`
-- Start the Containers: `sudo docker-compose -p settle-aid up -d`
+1. SSH into GCP Instance:
+```bash
+gcloud compute ssh <instance-name> --zone <zone>
+```
+
+2. Change directory: `cd ..` (Optional)
+
+3. Make sure `docker-compose.yaml` and `nginx.conf` is exist in the directory. And, the domain DNS has been point to the backend virtual machine external IP address. For the first time configuration files for production are needed to be created as below. Noted that the keys and domain name needed to be changed according to the new production environment. Note: The configuration files can be found in the repository. (`docker-compose.prod.yaml` and `nginx-conf-sse-sio`)
+
+
+4. Pull the Latest Docker Compose Configuration: 
+```bash
+sudo docker-compose pull
+```
+
+5. Start the Containers: 
+```bash
+sudo docker-compose -p settle-aid up -d
+```
+
   - The -p flag is to set a project name, which can be useful for running multiple environments on the same host
   - The -d flag is to run the containers in the background
+
+6. For the first time, run the migration script: 
+```bash
+sudo docker exec -it backend alembic upgrade head
+
+sudo docker exec -it backend python -m scripts.insert_data
+```
 
 ## Actions for Developers:
 

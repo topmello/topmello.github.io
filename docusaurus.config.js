@@ -64,7 +64,7 @@ const config = {
           src: "img/settle-aid-icon.png",
         },
         items: [
-          { label: 'Start Planning', to: '/DownloadPage' },
+          { label: 'Try Our App', to: '/DownloadPage' },
           {
             to: "/blog", label: "Product Blog", position: "left"
           },
