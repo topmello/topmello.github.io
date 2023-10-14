@@ -87,13 +87,13 @@ GIT_USER=<Your GitHub username> npm run deploy
 - Python 3.8 or above and Pip should be installed on the local machine.
 - Access to to the project repository and clone the Git repository using the command: 
   ```bash
-  git clone https://github.com/topmello/settle-aid-data-wrangling.git
-
+  git clone https://github.com/topmello/settle-aid-data-wrangling.github
+  ```
 - Or downloading and extracting the ZIP file of the repository.
 - Install the libraries using
-```bash
-pip install -r requirements.txt
-```
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 
 
@@ -128,38 +128,42 @@ The processed data is stored in the ./data/output folder in the project director
 1. Clone the repository or from the zip file
 2. Install Docker with Docker Compose
 3. Run `docker-compose up -d` in the root directory (Compose V2 do not have - between docker-compose)
-```bash
-docker-compose up -d
-```
+
+    ```bash
+    docker-compose up -d
+    ```
 
 4. SSH into the backend container with 
-```bash
-docker exec -it backend bash
-```
+    
+    ```bash
+    docker exec -it backend bash
+    ```
 
 5. Migrate the database inside the container (For the first time or when there's a change in the database schema)
-```bash
-alembic upgrade head
-```
+    
+    ```bash
+    alembic upgrade head
+    ```
 
 6. Insert the data inside the container (For the first time or when there's a change in the dataset)
-```bash
-python -m scripts.insert_data
-```
+    
+    ```bash
+    python -m scripts.insert_data
+    ```
 
 ## How to shutdown the system
 
 1. Run `docker-compose down` in the root directory
 
-```bash
-docker-compose down
-```
+    ```bash
+    docker-compose down
+    ```
 
 ## How to test the system
 
 ### Unit test using pytest with Docker locally
 
-1. Run `docker-compose -d` in the root directory
+1. Run `docker-compose up -d` in the root directory
 2. Run `docker exec -it backend pytest` to run the test
 
 Noted that this test will remove all the data in the database where the test is run. The better way to test is to use CI/CD with Github Action.
@@ -216,9 +220,10 @@ Before deploying on GCP, ensure the VM instance ready. To set up a VM instance:
 ### Deploying on GCP
 
 1. SSH into GCP Instance:
-```bash
-gcloud compute ssh <instance-name> --zone <zone>
-```
+    
+    ```bash
+    gcloud compute ssh <instance-name> --zone <zone>
+    ```
 
 2. Change directory: `cd ..` (Optional)
 
@@ -226,24 +231,27 @@ gcloud compute ssh <instance-name> --zone <zone>
 
 
 4. Pull the Latest Docker Compose Configuration: 
-```bash
-sudo docker-compose pull
-```
+    
+    ```bash
+    sudo docker-compose pull
+    ```
 
 5. Start the Containers: 
-```bash
-sudo docker-compose -p settle-aid up -d
-```
+    
+    ```bash
+    sudo docker-compose -p settle-aid up -d
+    ```
 
   - The -p flag is to set a project name, which can be useful for running multiple environments on the same host
   - The -d flag is to run the containers in the background
 
 6. For the first time, run the migration script: 
-```bash
-sudo docker exec -it backend alembic upgrade head
+    
+    ```bash
+    sudo docker exec -it backend alembic upgrade head
 
-sudo docker exec -it backend python -m scripts.insert_data
-```
+    sudo docker exec -it backend python -m scripts.insert_data
+    ```
 
 ### Actions for Developers:
 
@@ -256,15 +264,17 @@ sudo docker exec -it backend python -m scripts.insert_data
 1. While inside the backend container, navigate to the directory where your models are defined.
 2. Create or modify an ORM model to define the structure of your new table.
 3. Generate a new migration script using the command: 
-```bash
-alembic revision -m "Add new_table_name table"
-```
+    
+    ```bash
+    alembic revision -m "Add new_table_name table"
+    ```
 
 4. Edit the generated migration script in the `versions` directory, ensuring the `upgrade()` method contains logic to create your new table and the `downgrade()` method contains logic to remove it.
 5. Apply the migration using 
-   ```bash
-   alembic upgrade head
-   ```
+    
+    ```bash
+    alembic upgrade head
+    ```
 6. Define ORM models in the `app/models.py` to interact with the new table accordingly.
 
 Note: Please avoid running alembic revision on the production database. Instead, create the migration locally and apply it to the production database.
@@ -292,9 +302,10 @@ Please refer to: [Backups](https://topmello.github.io/docs/database/backup)
 
 1. Pull the Desired Image: 
    If you haven't already, ensure that the desired service's Docker image is available on your system. If it's on a public registry like Docker Hub, you can pull it using:
-```bash
-docker pull <image-name>:<tag>
-```
+    
+    ```bash
+    docker pull <image-name>:<tag>
+    ```
 
    Replace `<image-name>:<tag>` with the name and the desired tag/version of the image.
 
@@ -306,20 +317,23 @@ docker pull <image-name>:<tag>
 
 4. Launch the New Service:
    With the service added to the Docker Compose file, navigate to the directory containing the file and run:
-```bash
-docker-compose up -d new-service-name
-```
+    
+    ```bash
+    docker-compose up -d new-service-name
+    ```
 
    This command will start only the new service and any services it depends on. If you want to start all services defined in the Compose file, simply use:
-```bash
-docker-compose up -d
-```
+    
+    ```bash
+    docker-compose up -d
+    ```
 
 5. Monitor the Service:
    You can check the logs of the newly launched service with:
-```bash
-docker-compose logs -f new-service-name
-```
+    
+    ```bash
+    docker-compose logs -f new-service-name
+    ```
 
 By following these steps, you'll successfully launch a new service in the backend using Docker Compose. Remember to consult the documentation or README of the specific service image for any particular configurations or environment settings.
 
@@ -331,9 +345,10 @@ By following these steps, you'll successfully launch a new service in the backen
 1. Logging Pages: The developed logging pages are essential tools for observing the system's behavior. Regularly review the `/logs/` endpoint, as it maintains a record of all requests made to the backend. By analysing these logs, system performance, identify patterns, detect anomalies, and troubleshoot issues can be guaged when they arise.
 
 2. Docker Logs: Docker provides built-in logging mechanisms for its containers. You can access the logs of a specific container using the following command:
-```bash
-docker-compose logs -f service-name
-```
+    
+    ```bash
+    docker-compose logs -f service-name
+    ```
 
 
 
@@ -346,9 +361,10 @@ docker-compose logs -f service-name
 2. Check Logs: Review application logs for errors or warnings.
 3. Check External Services: Make sure dependencies, like databases or third-party APIs, are operational.
 4. Restart Services: A simple service restart might solve temporary glitches.
-```bash
-sudo docker-compose up -d -p settle-aid
-```
+    
+    ```bash
+    sudo docker-compose up -d -p settle-aid
+    ```
 
 5. Review Resources: Ensure the system hasn't run out of essential resources like CPU, RAM, or storage.
 
@@ -361,13 +377,16 @@ sudo docker-compose up -d -p settle-aid
 2. Clone or extract the frontend code to local folder
 3. Run commandline tool or open code folder in code editor
 4. Run the following command in folder that contains all code files
-```bash
-npm install
-```
+
+    ```bash
+    npm install
+    ```
+
 5. Now you can run the following command to start the development server
-```bash
-npm run start
-```
+    
+    ```bash
+    npm run start
+    ```
 6. After development server finish starting process, you can scan the QR code in the commandline using Expo Go application(Android) or using system camera(iOS)
 
 ## How to shutdown the system
@@ -417,21 +436,35 @@ eas build -p android --profile preview
 
 - SSH to GCP instance
 
-```bash
-gcloud compute ssh <instance-name>
-```
+  ```bash
+  gcloud compute ssh <instance-name>
+  ```
 
 - `cd ..` to go to home directory
 
 - Pull the latest image from GHCR
-```bash
-sudo docker-compose -f docker-compose-frontend.yaml pull
-```
+  ```bash
+  sudo docker-compose -f docker-compose-frontend.yaml pull
+  ```
 
 - Start the container
-```bash
-sudo docker-compose -f docker-compose-frontend.yaml -p settle-aid up -d
-```
+  ```bash
+  sudo docker-compose -f docker-compose-frontend.yaml -p settle-aid up -d
+  ```
+
+- Access the container using
+
+  ```bash
+  sudo docker exec -it <frontend-container-id> bash
+  ```
+
+- Login to expo using
+
+  ```bash
+  npx expo login
+  ```
+
+
 
 
 

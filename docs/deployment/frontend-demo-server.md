@@ -31,4 +31,17 @@ sudo docker-compose -f docker-compose-frontend.yaml pull
 sudo docker-compose -f docker-compose-frontend.yaml -p settle-aid up -d
 ```
 
+- Access the container using
+
+```bash
+sudo docker exec -it <frontend-container-id> bash
+```
+
+- Login to expo using
+
+```bash
+npx expo login
+```
+
+
 
