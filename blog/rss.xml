@@ -20,16 +20,6 @@
             <category>youtube</category>
         </item>
         <item>
-            <title><![CDATA[Artefacts]]></title>
-            <link>https://topmello.github.io/blog/artefacts</link>
-            <guid>https://topmello.github.io/blog/artefacts</guid>
-            <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Background]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background">Background<a href="#background" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2><p>Settle Aid is important for both "Flying Grannies" and Australian society as it improves the well-being of these grandparents, strengthens family dynamics, and enriches the multicultural fabric of Australian society.</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="system-components">System Components<a href="#system-components" class="hash-link" aria-label="Direct link to System Components" title="Direct link to System Components">​</a></h2><ul><li>Analysis and Design Report: <a href="https://drive.google.com/drive/u/1/folders/1arcBiH8aXb4UXkZcHMHF3gsvGApjIN_4" target="_blank" rel="noopener noreferrer">Link</a></li><li>Design Artefacts: <a href="https://drive.google.com/drive/u/1/folders/12U2ci-LVh7MFYuxTqAGCc7TwB0MN2w8y" target="_blank" rel="noopener noreferrer">Link</a></li><li>Build: <a href="https://drive.google.com/drive/u/1/folders/1MESszIor3mW6dLv3uAQ8axbA9c4cLYTp" target="_blank" rel="noopener noreferrer">Link</a> </li><li>System Architecture and Security: <a href="https://drive.google.com/drive/u/1/folders/1FlGdO2h_CC9pXnL91hzOsJKSX1t3RvIW" target="_blank" rel="noopener noreferrer">Link</a> </li><li>Data Governance: <a href="https://drive.google.com/drive/u/1/folders/172ae08Ama2weGeQcIglKKxn01kROsSxd" target="_blank" rel="noopener noreferrer">Link</a></li><li>Risk Management: <a href="https://drive.google.com/drive/u/1/folders/1dYvk0Siv2EiO_g1ghvmKZRfVIegxEVUi" target="_blank" rel="noopener noreferrer">Link</a></li><li>Testing: <a href="https://drive.google.com/drive/u/1/folders/11drqq90oPUwboIntG-dbnjOtUJ4KpcxB" target="_blank" rel="noopener noreferrer">Link</a></li><li>Team Information: <a href="https://drive.google.com/drive/u/1/folders/1w3Mm5AofPde4ViVbcEUMYReExJuHiw0o" target="_blank" rel="noopener noreferrer">Link</a></li></ul>]]></content:encoded>
-            <category>products</category>
-            <category>artifacts</category>
-        </item>
-        <item>
             <title><![CDATA[Ethics]]></title>
             <link>https://topmello.github.io/blog/ethics</link>
             <guid>https://topmello.github.io/blog/ethics</guid>
@@ -48,6 +38,16 @@
             <content:encoded><![CDATA[<ul><li>Melbourne City Council: Settle Aid is an easy mobile application for middle age users to spare time and motivate them to go out and visit landmarks, restaurants and shops. This promotes cultural diversity and social integration, enhancing the city's reputation as a welcoming and inclusive destination. Ultimately, it potentially boosts the local economy by exposing a new customer group.</li><li>Uber: Trip attractions can be far apart and require a ride. Uber can potentially incorporate Settle Aid for people to share rides and further enhance cultural bridging if they go to the attraction together.</li><li>Trip Advisor: Trip Advisor is a website that emphasizes on traveller’s experience and satisfaction. With Settle Aid, trip advisor can target more audience groups and broaden customer market and potentially differentiate their product in this new group.</li></ul>]]></content:encoded>
             <category>products</category>
             <category>sponsors</category>
+        </item>
+        <item>
+            <title><![CDATA[Artefacts]]></title>
+            <link>https://topmello.github.io/blog/artefacts</link>
+            <guid>https://topmello.github.io/blog/artefacts</guid>
+            <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Background]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background">Background<a href="#background" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2><p>Settle Aid is important for both "Flying Grannies" and Australian society as it improves the well-being of these grandparents, strengthens family dynamics, and enriches the multicultural fabric of Australian society.</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="system-components">System Components<a href="#system-components" class="hash-link" aria-label="Direct link to System Components" title="Direct link to System Components">​</a></h2><ul><li>Analysis and Design Report: <a href="https://drive.google.com/drive/u/1/folders/1arcBiH8aXb4UXkZcHMHF3gsvGApjIN_4" target="_blank" rel="noopener noreferrer">Link</a></li><li>Design Artefacts: <a href="https://drive.google.com/drive/u/1/folders/12U2ci-LVh7MFYuxTqAGCc7TwB0MN2w8y" target="_blank" rel="noopener noreferrer">Link</a></li><li>Build: <a href="https://drive.google.com/drive/u/1/folders/1MESszIor3mW6dLv3uAQ8axbA9c4cLYTp" target="_blank" rel="noopener noreferrer">Link</a> </li><li>System Architecture and Security: <a href="https://drive.google.com/drive/u/1/folders/1FlGdO2h_CC9pXnL91hzOsJKSX1t3RvIW" target="_blank" rel="noopener noreferrer">Link</a> </li><li>Data Governance: <a href="https://drive.google.com/drive/u/1/folders/172ae08Ama2weGeQcIglKKxn01kROsSxd" target="_blank" rel="noopener noreferrer">Link</a></li><li>Risk Management: <a href="https://drive.google.com/drive/u/1/folders/1dYvk0Siv2EiO_g1ghvmKZRfVIegxEVUi" target="_blank" rel="noopener noreferrer">Link</a></li><li>Testing: <a href="https://drive.google.com/drive/u/1/folders/11drqq90oPUwboIntG-dbnjOtUJ4KpcxB" target="_blank" rel="noopener noreferrer">Link</a></li><li>Team Information: <a href="https://drive.google.com/drive/u/1/folders/1w3Mm5AofPde4ViVbcEUMYReExJuHiw0o" target="_blank" rel="noopener noreferrer">Link</a></li></ul>]]></content:encoded>
+            <category>products</category>
+            <category>artifacts</category>
         </item>
         <item>
             <title><![CDATA[Top Mello Team]]></title>
